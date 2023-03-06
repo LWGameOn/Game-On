@@ -3,3 +3,11 @@
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
  }
+
+.footer {
+  text-align: center;
+  background-color: rgb(66, 66, 66);
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -16,16 +16,17 @@ end
 
   20.times do
     user = User.all.sample
-    sport = ["football", "basketball", "volleyball", "tennis", "baseball"].sample
+    sport = ["football", "basketball", "volleyball", "tennis", "baseball", "badminton", "cricket", "rugby"].sample
     level = ["advance", "beginner", "intermediate"].sample
+    location = Faker::Address.full_address
    Event.create(
-     name: sport,
+     name: "#{sport} at #{location}",
      description: "I'm looking for #{sport} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
-     location: Faker::Address.full_address,
+     location: location,
      date: Faker::Date.forward(days: 365),
      time: Faker::Time.forward(days: 23, format: :long).split(" ")[3],
      capacity: rand(2..20),
-     sport: Faker::Sports,
+     sport: sport,
      user_id: user.id
    )
   end

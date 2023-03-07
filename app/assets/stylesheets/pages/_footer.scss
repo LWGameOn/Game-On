@@ -1,13 +1,37 @@
 .page-container {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
+  background-color: white;
  }
 
-.footer {
-  text-align: center;
-  background-color: rgb(66, 66, 66);
-  color: white;
+ .navbar {
+    background-color: #F2F8F5;
+ }
+
+// .footer {
+//   text-align: center;
+//   background-color: rgb(66, 66, 66);
+//   color: white;
+//   padding-top: 10px;
+//   padding-bottom: 10px;
+// }
+
+
+.navbar-custom {
+  list-style: none;
+  display: flex;
+  margin-bottom: 0px;
+}
+
+
+.navbar-custom li {
+  margin-right: 85px;
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.navbar-custom li i {
+  color: #519872;
 }

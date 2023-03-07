@@ -6,6 +6,6 @@ class Event < ApplicationRecord
 
   has_many :messages
 
-  validates :name, :description, :address, :date, :time, presence: true
+  validates :name, :description, :location, :date, :time, presence: true
   validates :description, length: { minimum: 30 }
 end

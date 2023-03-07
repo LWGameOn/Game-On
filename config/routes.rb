@@ -5,4 +5,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :events do
+    # resources :play, only: %i[create]
+  end
+
+  # resources :play, only: %i[destroy update]
 end

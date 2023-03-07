@@ -6,21 +6,25 @@
           <%= link_to events_path do %>
             <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
+          <p>Search</p>
         </li>
         <li class="nav-item">
           <%= link_to events_path do %>
             <i class="fa-solid fa-calendar-days"></i>
           <% end %>
+          <p>Events</p>
         </li>
         <li class="nav-item active">
           <%= link_to events_path do %>
             <i class="fa-regular fa-message"></i>
           <% end %>
+          <p>Chats</p>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="profile">
           <%= link_to events_path do %>
             <i class="fa-regular fa-user"></i>
           <% end %>
+          <p>Profile</p>
         </li>
       <% else %>
         <li class="nav-item">

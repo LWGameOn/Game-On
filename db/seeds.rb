@@ -3,6 +3,7 @@ User.destroy_all
 
 
 #
+<<<<<<< HEAD
 20.times do
   User.new(
     email: Faker::Internet.email,
@@ -27,3 +28,10 @@ end
      sport: Faker::Sports
    ).save
   end
+=======
+# Examples:
+#
+#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+>>>>>>> master

@@ -13,4 +13,7 @@ class User < ApplicationRecord
   has_many :events, through: :plays
 
   has_many :plays
+
+  has_one_attached :avatar, dependent: :destroy
+
 end

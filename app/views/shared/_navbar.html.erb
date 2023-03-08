@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-lewagon">
+<div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-lewagon">
   <%# <div class="container-fluid"> %>
     <ul class="navbar-custom">
       <% if user_signed_in? %>
@@ -26,7 +26,7 @@
           <% end %>
           <p>Profile</p>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Your Dashboard", events_path, class:"dropdown-item" %>
+            <%= link_to "Your Dashboard", user_path(current_user), class:"dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, class:"dropdown-item", data: {turbo_method: :delete} %>
           </div>
         </li>

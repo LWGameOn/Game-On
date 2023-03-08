@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 Event.destroy_all
 User.destroy_all
 

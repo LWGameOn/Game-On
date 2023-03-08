@@ -20,7 +20,7 @@
           <% end %>
           <p>Chats</p>
         </li>
-        <li class="nav-item dropdown comic" id="profile">
+        <li class="nav-item dropup comic" id="profile">
           <%= link_to events_path, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria_haspopup: "true", aria_expanded:"false" do %>
             <i class="fa-regular fa-user"></i>
           <% end %>
@@ -32,7 +32,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link", style: "color:#519872;" %>
         </li>
       <% end %>
     </ul>

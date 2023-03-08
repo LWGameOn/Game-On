@@ -26,8 +26,21 @@ url = [
         "https://i.pinimg.com/originals/c2/36/07/c236076f09489ebac20da92c22a024aa.jpg"
       ]
 
-locations = ["Treptower Park, Berlin", "Tempelhofer Feld, Tempelhofer Damm, Berlin", "Görlitzer Park, Görlitzer Straße, Berlin", "Volkspark Friedrichshain, Berlin", "Tiergarten, Berlin", "Volkspark Hasenheide, Columbiadamm, Berlin", "Viktoriapark, Katzbachstraße, Berlin", "Rudi-Dutschke-Straße 26, 10969 Berlin", "Mauerpark, Gleimstraße, Berlin", "Volkspark Humboldthain, Brunnenstraße, Berlin"]
+locations = [
+  "Treptower Park, Berlin",
+  "Tempelhofer Feld, Berlin",
+  "Görlitzer Park, Görlitzer Straße, Berlin",
+  "Volkspark Friedrichshain, Berlin",
+  "Tiergarten, Berlin",
+  "Volkspark Hasenheide, Berlin",
+  "Viktoriapark, Katzbachstraße, Berlin",
+  "Rudi-Dutschke-Straße 26, 10969 Berlin",
+  "Mauerpark, Gleimstraße, Berlin",
+  "Volkspark Humboldthain, Berlin"
+]
+
 i = 0
+
 20.times do
   image = URI.open(url[i])
   user = User.new(
@@ -45,13 +58,12 @@ end
 i = 0
   20.times do
     user = User.all.sample
-    sport = ["football", "basketball", "volleyball", "tennis", "baseball"]
+    sport = ["football", "basketball", "volleyball", "tennis", "baseball", "badminton", "cricket", "rugby"]
     sport_type = sport.sample
-    level = ["advance", "beginner", "intermediate"].sample
-    location = Faker::Address.full_address
+    level = ["expert", "beginner", "intermediate"].sample
    Event.create(
      name: "#{sport_type.capitalize} Time",
-     description: "I'm looking for #{sport[i]} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
+     description: "I'm looking for #{sport_type} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
      location: locations.sample,
      date: Faker::Date.forward(days: 365),
      time: Faker::Time.forward(days: 23, format: :long).split(" ")[3],

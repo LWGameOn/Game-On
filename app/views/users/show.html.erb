@@ -6,4 +6,7 @@
     <li class="list-group-item"><%= "bio: #{@user.bio}" %></li>
     <li class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill) %></li>
   </ul>
+
+  <%= link_to "Edit profile", edit_user_path(@user) %>
 </div>
+

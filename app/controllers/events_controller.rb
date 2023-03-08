@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     end
     @has_joined = players.include?(current_user.id)
     @play = Play.new
+    @creator 
   end
 
   def new

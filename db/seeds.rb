@@ -19,6 +19,7 @@ i = 0
     sport = ["football", "basketball", "volleyball", "tennis", "baseball"]
     sport_type = sport.sample
     level = ["advance", "beginner", "intermediate"].sample
+    location = Faker::Address.full_address
    Event.create(
      name: "#{sport_type.capitalize} Time",
      description: "I'm looking for #{sport[i]} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",

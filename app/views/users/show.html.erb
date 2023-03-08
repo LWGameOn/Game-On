@@ -1,8 +1,9 @@
 <div class="container">
-  <ul>
-    <li><%= @user.email %></li>
-    <li><%= @user.username %></li>
-    <li><%= @user.bio %></li>
-    <li><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill) %></li>
+  <ul class="list-group">
+  <%# almost certainly won't have email here in final version %>
+    <li class="list-group-item"><%= "email: #{@user.email}" %></li>
+    <li class="list-group-item"><%= "username: #{@user.username}" %></li>
+    <li class="list-group-item"><%= "bio: #{@user.bio}" %></li>
+    <li class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill) %></li>
   </ul>
 </div>

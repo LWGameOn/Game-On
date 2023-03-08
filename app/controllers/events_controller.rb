@@ -5,7 +5,6 @@ class EventsController < ApplicationController
 
   def index
     @location = params[:query]
-    raise
     if @location.present?
       @events = Event.near(@location, 20)
     else
@@ -31,6 +30,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     if @event.save
       redirect_to events_path(@event)
     else

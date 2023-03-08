@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log(this.apiKeyValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -39,4 +40,3 @@ export default class extends Controller {
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 }
-

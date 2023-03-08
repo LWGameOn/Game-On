@@ -1,15 +1,22 @@
-<%# <div class="contain" style="background-image: asset-url('logo.png', image);">
+<div class="contain">
   <h1>Find your team close by ...</h1>
-  <div class="search mt-4 mb-4">
-    <%= form_with url: hitmen_path, method: :get, class: "d-flex" do %>
-        <%# <div class="input-group rounded">
+  <div class="search mt-4 mb-4" style="width:90%; margin-left:20px;">
+    <%= simple_form_for location do |f| %>
+      <%= f.input :location,
+      input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
+      wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+      %>
+    <% end %>
+
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+        <div class="input-group rounded">
           <%= text_field_tag :query,
             params[:query],
             class: "form-control rounded",
             placeholder: "Your location"
           %>
-          <%# <%= submit_tag "Search", class:"btn btn-light search-btn"%>
-        <%# </div>
+          <%= submit_tag "Search", class:"btn btn-light search-btn"%>
+        </div>
     <% end %>
-  <%# </div>
-</div> %> %> %> %> %>
+  </div>
+</div>

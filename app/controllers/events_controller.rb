@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: :show
-  before_action :set_user_event, only: %i[edit update destroy]
+  before_action :set_user_event, only: :destroy
   before_action :authenticate_user!, except: %i[index show]
 
   def index
@@ -22,6 +22,12 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
+    players = Play.where(event_id: @event.id).map do |player|
+      player.user_id
+    end
+    @has_joined = players.include?(current_user.id)
+    @play = Play.new
   end
 
   def new
@@ -45,22 +51,22 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to events_path(@event)
     else
-      render :edit
+      render :edit, :bad_request
     end
   end
 
   def destroy
-    if @event.destroy
+    if @event.destroy!
       redirect_to events_path
     else
-      redirect_to events_path(@event)
+      redirect_to events_path, status: :see_other
     end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :date, :time, :capacity, :short)
+    params.require(:event).permit(:name, :description, :location, :date, :time, :capacity, :sport)
   end
 
   def set_event

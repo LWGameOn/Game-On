@@ -20,11 +20,15 @@
           <% end %>
           <p>Chats</p>
         </li>
-        <li class="nav-item" id="profile">
-          <%= link_to events_path do %>
+        <li class="nav-item dropdown comic" id="profile">
+          <%= link_to events_path, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria_haspopup: "true", aria_expanded:"false" do %>
             <i class="fa-regular fa-user"></i>
           <% end %>
           <p>Profile</p>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "Your Dashboard", events_path, class:"dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, class:"dropdown-item", data: {turbo_method: :delete} %>
+          </div>
         </li>
       <% else %>
         <li class="nav-item">

@@ -1,14 +1,9 @@
-<h2>name: <%= @event.name %></h2>
-<p>descriotion: <%= @event.description %></p>
-<p>location: <%= @event.location %></p>
-<p>date: <%= @event.date %></p>
-<p>time: <%= @event.time %></p>
-<p>capacity: <%= @event.capacity %></p>
-<p>sport: <%= @event.sport %></p>
+<h1> <%= @event.name %> </h1>
+<% if @has_joined %>
+  <h2>You have joined this fun game</h2>
+<% else %>
+  <%= simple_form_for [@event, @play] do |f| %>
+    <%= f.submit "JOIN" %>
+  <% end %>
+<% end %>
 
-
-<div>
-<%= link_to "Edit this event", edit_event_path(@event) %> |
-<%= link_to "Back to event", events_path  %>
-<%= button_to "Destroy this event", @event, method: :delete  %>
-</div>

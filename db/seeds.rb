@@ -10,7 +10,7 @@ url = [
         "https://i.pinimg.com/236x/0b/b9/78/0bb978143eb14edf0832990ae34fdb58.jpg",
         "https://i.pinimg.com/236x/40/cc/bf/40ccbfeecd39be3cb3d5c7231a5cbee8.jpg",
         "https://i.pinimg.com/736x/5c/c7/ed/5cc7edbcd2a50dd527682817b92c92f6.jpg",
-        "https://i0.wp.com/styles.redditmedia.com/t5_s87bw/styles/profileIcon_1ho47as2cl261.jpg",
+        "https://i.imgur.com/KeseXNR.jpg",
         "https://i.pinimg.com/474x/0d/42/18/0d4218246aebac5ad2ea345775889176.jpg",
         "https://i.pinimg.com/236x/df/6c/68/df6c6872cf18635982392c324d3f9264.jpg",
         "https://i.kym-cdn.com/photos/images/newsfeed/001/688/993/53d",
@@ -25,6 +25,8 @@ url = [
         "https://i.pinimg.com/236x/ec/03/e8/ec03e82b59f6cf90fd19f881fc57e2c9.jpg",
         "https://i.pinimg.com/originals/c2/36/07/c236076f09489ebac20da92c22a024aa.jpg"
       ]
+
+locations = ["Treptower Park, Berlin", "Tempelhofer Feld, Tempelhofer Damm, Berlin", "Görlitzer Park, Görlitzer Straße, Berlin", "Volkspark Friedrichshain, Berlin", "Tiergarten, Berlin", "Volkspark Hasenheide, Columbiadamm, Berlin", "Viktoriapark, Katzbachstraße, Berlin", "Rudi-Dutschke-Straße 26, 10969 Berlin", "Mauerpark, Gleimstraße, Berlin", "Volkspark Humboldthain, Brunnenstraße, Berlin"]
 i = 0
 20.times do
   image = URI.open(url[i])
@@ -50,7 +52,7 @@ i = 0
    Event.create(
      name: "#{sport_type.capitalize} Time",
      description: "I'm looking for #{sport[i]} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
-     location: Faker::Address.full_address,
+     location: locations.sample,
      date: Faker::Date.forward(days: 365),
      time: Faker::Time.forward(days: 23, format: :long).split(" ")[3],
      capacity: rand(2..20),

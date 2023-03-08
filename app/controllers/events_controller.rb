@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: :show
-  before_action :set_user_event, only: %i[edit update destroy]
+  before_action :set_user_event, only: :destroy
   before_action :authenticate_user!, except: %i[index show]
 
   def index
@@ -29,36 +29,26 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    if @event.save
-      redirect_to events_path(@event)
+    @event.user = current_user
+    if @event.save!
+      redirect_to events_path
     else
-      render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @event.update(event_params)
-      redirect_to events_path(@event)
-    else
-      render :edit
+      render :new, :bad_request
     end
   end
 
   def destroy
-    if @event.destroy
+    if @event.destroy!
       redirect_to events_path
     else
-      redirect_to events_path(@event)
+      redirect_to events_path, status: :see_other
     end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :date, :time, :capacity, :short)
+    params.require(:event).permit(:name, :description, :location, :date, :time, :capacity, :sport)
   end
 
   def set_event

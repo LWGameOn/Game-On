@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  get 'user/show'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   # resources :play, only: %i[destroy update]
+  resources :users, only: %i[show]
 end

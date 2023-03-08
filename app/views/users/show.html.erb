@@ -1,0 +1,8 @@
+<div class="container">
+  <ul>
+    <li><%= current_user.email %></li>
+    <li><%= current_user.username %></li>
+    <li><%= current_user.bio %></li>
+    <li><%= cl_image_tag(current_user.avatar.key, height: 140, width: 140, crop: :fill) %></li>
+  </ul>
+</div>

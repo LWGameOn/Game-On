@@ -21,3 +21,7 @@
     <% end %>
   </div>
 </div>
+
+<% if @events.nil? %>
+  <%= render "shared/map" %>
+<% end %>

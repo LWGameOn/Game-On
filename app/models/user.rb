@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Since we can't have two different "has_many :events" definitions, we should
+   # Since we can't have two different "has_many :events" definitions, we should
   # distinguish between participation and event ownership
   # shows whoever has created the events
   has_many :event_invites, foreign_key: 'user_id', class_name: 'Event'

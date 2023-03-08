@@ -1,10 +1,10 @@
 class PlaysController < ApplicationController
   def create
-    @play = Play.new(play_params)
+    @play = Play.new
     @play.user = current_user
-    @play.event = params[:event_id]
+    @play.event = Event.find(params[:event_id])
     if @play.save!
-      redirect_to play_path(@play)
+      redirect_to event_path(@play.event)
     else
       render :new, status: :bad_request
     end
@@ -23,6 +23,6 @@ class PlaysController < ApplicationController
   private
 
   def plays_params
-    params.require(:play).permit(:user_id, :event_id)
+    params.require(:play).permit(:user_id, :id)
   end
 end

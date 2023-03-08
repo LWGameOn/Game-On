@@ -1,0 +1,9 @@
+<h1> <%= @event.name %> </h1>
+<%# <%= link_to "JOIN", event_plays_path(@event)  %>
+<% if @has_joined %>
+  <h2>You have joined this fun game</h2>
+<% else %>
+  <%= simple_form_for [@event, @play] do |f| %>
+    <%= f.submit "JOIN" %>
+  <% end %>
+<% end %>

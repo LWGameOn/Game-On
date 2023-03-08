@@ -1,10 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: :show
-  before_action :set_user_event, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_user_event, only: %i[edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @events = Event.all
+
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
     # query = params[:query]
     # if query.present?
     #   @events = Event.all.where()

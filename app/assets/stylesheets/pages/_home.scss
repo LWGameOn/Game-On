@@ -1,1 +1,11 @@
 // Specific CSS for your home-page
+.contain {
+  background-image: asset-url("landing.jpg");
+  background-size: cover;
+  height: 92vh;
+}
+
+.contain h1 {
+  padding-top: 200px;
+  margin-left: 22px;
+}

@@ -4,20 +4,21 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @events = Event.all
+    @location = params[:query]
+    if @location.present?
+      @events = Event.near(@location, 20)
+    else
+      @events = Event.all
+    end
 
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
-        lng: event.longitude
+        lng: event.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { event: event }),
+        marker_html: render_to_string(partial: "marker", locals: { event: event })
       }
     end
-    # query = params[:query]
-    # if query.present?
-    #   @events = Event.all.where()
-    # else
-    #   @events = Event.all
-    # end
   end
 
   def show
@@ -36,10 +37,21 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    if @event.save!
-      redirect_to events_path
+    if @event.save
+      redirect_to events_path(@event)
     else
-      render :new, :bad_request
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to events_path(@event)
+    else
+      render :edit, :bad_request
     end
   end
 

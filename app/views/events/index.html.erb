@@ -1,3 +1,7 @@
+<div>
+  <%= render "shared/map" %>
+</div>
+
 <div class="cover mb-4 d-flex align-items-center justify-content-center">
   <div class="text-center text-white">
     <h1>Events</h1>
@@ -21,7 +25,3 @@
     <% end %>
   </div>
 </div>
-
-<% if @events.nil? %>
-  <%= render "shared/map" %>
-<% end %>

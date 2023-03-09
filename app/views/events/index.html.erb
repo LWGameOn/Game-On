@@ -13,6 +13,22 @@
   <% end %>
 </div>
 
+
+<div class="search mt-4 mb-4">
+  <%= simple_form_for(:date, method: :get, url: events_path, defaults: { input_html: { class: 'd-flex' } }) do |f| %>
+    <%= f.input :start,
+                as: :date,
+                autofocus: true,
+                html5: true, class:"form-control form-control-lg" %>
+
+    <%= f.input :end,
+                as: :date,
+                autofocus: true,
+                html5: true, class:"form-control form-control-lg" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <div class="cover mb-4 d-flex align-items-center justify-content-center">
   <div class="text-center text-white">
     <h1>Events</h1>

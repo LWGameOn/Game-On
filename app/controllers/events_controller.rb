@@ -25,6 +25,13 @@ class EventsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: { event: event })
       }
     end
+
+    # search based on daterange
+    start_date = params[:date][:start]
+    end_date = params[:date][:end]
+
+    @events = Event.where(date:start_date..end_date)
+
   end
 
   def show

@@ -26,6 +26,17 @@
   padding: 7px 20px;
   margin-bottom: 10px;
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.chatroom {
+  margin-top:45px;
+}
+
+.search-margin {
+  padding: 10px;
 }
 
 .chat-index-item {

@@ -4,11 +4,19 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    if params[:query].present?
-      @events = Event.near(params[:query][:location], 20)
-    else
-      @events = Event.all
-    end
+    # search based on date range
+    start_date = params.dig(:date, :start)
+    end_date = params.dig(:date, :end)
+
+    @events = if params[:query].present?
+                Event.near(params[:query][:location], 20)
+              elsif params[:name_sport_or_location].present?
+                Event.search_by_name_location_and_sport(params[:name_sport_or_location])
+              elsif start_date.present? && end_date.present?
+                Event.where(date: start_date..end_date)
+              else
+                Event.all
+              end
 
     @markers = @events.geocoded.map do |event|
       {
@@ -18,6 +26,7 @@ class EventsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: { event: event })
       }
     end
+
   end
 
   def show

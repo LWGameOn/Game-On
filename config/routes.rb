@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   end
 
   # resources :play, only: %i[destroy update]
-  resources :users, only: %i[show]
+  resources :users, only: %i[show edit]
 end

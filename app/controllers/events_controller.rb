@@ -4,9 +4,8 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @location = params[:query][:location]
-    if @location.present?
-      @events = Event.near(@location, 20)
+    if params[:query].present?
+      @events = Event.near(params[:query][:location], 20)
     else
       @events = Event.all
     end

@@ -63,7 +63,7 @@ i = 0
   i += 1
 end
 
-  20.times do
+  50.times do
     user = User.all.sample
     sport = ["football", "basketball", "volleyball", "tennis", "baseball", "badminton", "cricket", "rugby"]
     sport_type = sport.sample

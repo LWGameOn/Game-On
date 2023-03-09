@@ -1,6 +1,13 @@
-<h2>My group chats</h2>
-<ul>
-<% @chatrooms.each do |chatroom| %>
-  <li><%= link_to chatroom.event.name, chatroom_path(chatroom)%> </li>
-<% end %>
-</ul>
+<div class="chatroom-header">
+  <h2>My group chats</h2>
+</div>
+<div>
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom_path(chatroom), class:"text-decoration-none", style:"color: #0E1B14;" do %>
+      <div class="chat-index-item d-flex">
+        <p><%= chatroom.event.name %></p>
+        <p style="font-size:13px;">on: <%= chatroom.event.date.strftime('%a %d %b %Y') %>, <%= chatroom.event.date.strftime('%I:%M %p') %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

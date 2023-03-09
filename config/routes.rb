@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   end
 
   # resources :play, only: %i[destroy update]
-  resources :users, only: %i[show edit]
+  resources :users, only: %i[show edit update]
+
+  resources :chatrooms, only: %i[index show] do
+    resources :messages, only: :create
+  end
 end

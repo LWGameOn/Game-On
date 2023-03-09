@@ -10,9 +10,11 @@ class User < ApplicationRecord
   has_many :event_invites, foreign_key: 'user_id', class_name: 'Event'
 
   # shows whoever is participating in the event
+  has_many :plays
+
   has_many :events, through: :plays
 
-  has_many :plays
+  has_many :chatrooms, through: :events
 
   has_one_attached :avatar, dependent: :destroy
 

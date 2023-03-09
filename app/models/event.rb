@@ -16,7 +16,7 @@ class Event < ApplicationRecord
   validates :name, :description, :location, :date, presence: true
   validates :description, length: { minimum: 30 }
 
-  pg_search_scope :search_by_location_and_sport,
-                  against: [:sport, :location],
+  pg_search_scope :search_by_name_location_and_sport,
+                  against: [:sport, :location, :name],
                   using: { :tsearch => { :prefix => true } }
 end

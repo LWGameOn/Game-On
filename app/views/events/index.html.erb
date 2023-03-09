@@ -4,10 +4,10 @@
 
 <div class="search mt-4 mb-4">
   <%= form_with url: events_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :sport_or_location,
-      params[:sport_or_location],
+    <%= text_field_tag :name_sport_or_location,
+      params[:name_sport_or_location],
       class: "form-control",
-      placeholder: "Search for a sport or a location"
+      placeholder: "Search for a name, a sport or a location"
     %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>

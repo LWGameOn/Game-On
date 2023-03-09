@@ -8,5 +8,21 @@
   </ul>
   <% if current_user == @user %>
     <%= link_to "Edit profile", edit_user_path(@user) %>
+    <% if Event.where(user: @user).present? %>
+      <h2>Your Posted Events</h2>
+      <ul class=list-group>
+        <% Event.where(user: @user).each do |e| %>
+        <li class="list-group-item"><%= link_to e.name, event_path(e)  %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if Play.where(user: @user).present? %>
+      <h2>Your Joined Events</h2>
+      <ul class=list-group>
+        <% Play.where(user: @user).each do |p| %>
+        <li class="list-group-item"><%= link_to p.event.name, event_path(p.event)%><%= link_to "Join Chat", chatroom_path(Chatroom.find_by(event: p.event)) %></li>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
 </div>

@@ -1,0 +1,7 @@
+<h2>My group chats</h2>
+<ul>
+<%= @chatrooms.each do |chatroom| %>
+  <%= link_to chatroom_path(chatroom) %>
+    <li><%= chatroom.event.name %> </li>
+  <% end %>
+</ul>

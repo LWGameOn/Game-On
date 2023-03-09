@@ -8,9 +8,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to users_path(@user)
+    if(current_user == @user)
+      @user.update(user_params)
+    else
+      puts "NOT YOUR PROFILE TO EDIT"
+    end
+    redirect_to user_path(@user)
   end
 
   private
@@ -20,6 +23,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :bio)
+    params.require(:user).permit(:username, :bio, :avatar)
   end
 end

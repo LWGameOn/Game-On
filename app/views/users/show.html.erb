@@ -1,12 +1,44 @@
 <div class="container">
   <ul class="list-group">
   <%# almost certainly won't have email here in final version %>
-    <li class="list-group-item"><%= "email: #{@user.email}" %></li>
+    <% if @user == current_user %>
+      <li class="list-group-item"><%= "email: #{@user.email}" %></li>
+    <% end %>
     <li class="list-group-item"><%= "username: #{@user.username}" %></li>
     <li class="list-group-item"><%= "bio: #{@user.bio}" %></li>
     <li class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill) %></li>
   </ul>
-
-  <%= link_to "Edit profile", edit_user_path(@user) %>
+  <% if current_user == @user %>
+    <%= link_to "Edit profile", edit_user_path(@user), class:"btn btn-outline-dark" %>
+    <div class="container">
+      <% if Event.where(user: @user).present? %>
+        <h2>Your Posted Events</h2>
+        <% Event.where(user: @user).each do |e| %>
+          <div class="co-12 col-sm-6 col-md-4 mb-3">
+            <%= link_to event_path(e), class:"text-decoration-none" do %>
+              <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
+                <%= e.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="container">
+      <% if Play.where(user: @user).present? %>
+        <h2>Your Joined Events</h2>
+        <div class="row">
+          <% Play.where(user: @user).each do |p| %>
+            <div class="co-12 col-sm-6 col-md-4 mb-3">
+              <%= link_to event_path(p.event), class:"text-decoration-none" do %>
+                <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
+                  <%= p.event.name %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-

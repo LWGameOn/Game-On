@@ -36,7 +36,16 @@ locations = [
   "Viktoriapark, Katzbachstraße, Berlin",
   "Rudi-Dutschke-Straße 26, 10969 Berlin",
   "Mauerpark, Gleimstraße, Berlin",
-  "Volkspark Humboldthain, Berlin"
+  "Volkspark Humboldthain, Berlin",
+  "Eiffel Tower, 5 avenue Anatole France, Paris, 75007, France",
+  "Victoria Park, Victoria St, Auckland, Auckland 1010, New Zealand",
+  "Albert Park, Princes St., Auckland, Auckland 1010, New Zealand",
+  "Rua Jaime Lerner Qd 9 Paraíso do Tocantins - Tocantins, Brazil",
+  "Tokyo Tower, Tokyo, Japan",
+  "Pyongyang, North Korea",
+  "Antarctica",
+  "Central Park, New York City, New York 10128, United States",
+  "Kalgoorlie Super Pit, Western Australia 6432, Australia"
 ]
 
 i = 0
@@ -54,23 +63,22 @@ i = 0
   i += 1
 end
 
-
-i = 0
-  20.times do
+  50.times do
     user = User.all.sample
     sport = ["football", "basketball", "volleyball", "tennis", "baseball", "badminton", "cricket", "rugby"]
     sport_type = sport.sample
     level = ["expert", "beginner", "intermediate"].sample
    Event.create(
-     name: "#{sport_type.capitalize} Time",
-     description: "I'm looking for #{sport_type} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
-     location: locations.sample,
-     date: Faker::Date.forward(days: 365),
-     time: Faker::Time.forward(days: 23, format: :long).split(" ")[3],
-     capacity: rand(2..20),
-     sport: sport_type,
-     user_id: user.id
+    name: "#{sport_type.capitalize} Time",
+    description: "I'm looking for #{sport_type} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
+    location: locations.sample,
+    date: Faker::Time.forward(days: 60, period: :all),
+    capacity: rand(2..20),
+    sport: sport_type,
+    user_id: user.id
    )
-   i += 1
+   Chatroom.create(
+    event: Event.last
+   )
   end
   puts "Finished"

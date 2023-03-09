@@ -8,5 +8,5 @@
 <% end %>
 
 <div>
-<%= button_to "Destroy this event", @event, method: :delete  %>
+  <%= @event.user_id == current_user.id ? (button_to "Destroy this event", @event, method: :delete) : "" %>
 </div>

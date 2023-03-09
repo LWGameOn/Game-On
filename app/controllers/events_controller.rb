@@ -4,19 +4,15 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @location = params[:query]
-
-    if @location.present?
-      @events = Event.near(@location, 20)
+    if params[:query].present?
+      @events = Event.near(params[:query][:location], 20)
     else
       @events = Event.all
     end
 
     # multi attribute search (sport or location)
-    @q = params[:sport_or_location]
-
-    if @q.present?
-      @events = Event.search_by_location_and_sport(@q)
+    if params[:sport_or_location].present?
+      @events = Event.search_by_location_and_sport(params[:sport_or_location])
     else
       @vents = Event.all
     end
@@ -38,6 +34,7 @@ class EventsController < ApplicationController
     end
     @has_joined = players.include?(current_user.id)
     @play = Play.new
+    @creator
   end
 
   def new
@@ -76,7 +73,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :date, :time, :capacity, :sport)
+    params.require(:event).permit(:name, :description, :location, :date, :capacity, :sport)
   end
 
   def set_event

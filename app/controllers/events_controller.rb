@@ -5,10 +5,20 @@ class EventsController < ApplicationController
 
   def index
     @location = params[:query]
+
     if @location.present?
       @events = Event.near(@location, 20)
     else
       @events = Event.all
+    end
+
+    # multi attribute search (sport or location)
+    @q = params[:sport_or_location]
+
+    if @q.present?
+      @events = Event.search_by_location_and_sport(@q)
+    else
+      @vents = Event.all
     end
 
     @markers = @events.geocoded.map do |event|

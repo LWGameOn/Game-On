@@ -2,12 +2,24 @@
   <%= render "shared/map" %>
 </div>
 
+<div class="search mt-4 mb-4">
+  <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :sport_or_location,
+      params[:sport_or_location],
+      class: "form-control",
+      placeholder: "Search for a sport or a location"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <div class="cover mb-4 d-flex align-items-center justify-content-center">
   <div class="text-center text-white">
     <h1>Events</h1>
     <h3 class="typed-js" data-controller="typed-js"></h3>
   </div>
 </div>
+
 <div class="container py-5">
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h3 class="mb-0">Events</h3>

@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @location = params[:query]
+    @location = params[:query][:location]
     if @location.present?
       @events = Event.near(@location, 20)
     else
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
     end
     @has_joined = players.include?(current_user.id)
     @play = Play.new
-    @creator 
+    @creator
   end
 
   def new

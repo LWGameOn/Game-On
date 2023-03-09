@@ -1,4 +1,10 @@
-<h1> <%= @event.name %> </h1>
+<article class="card">
+<header class="card-head">
+<h2 class="card-title"> <%= @event.name %></h2>
+
+</header>
+</article>
+<%# <h1> <%= @event.name </h1> %>
 <% if @has_joined %>
   <h2>You have joined this fun game</h2>
 <% else %>

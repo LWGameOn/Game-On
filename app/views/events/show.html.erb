@@ -1,17 +1,29 @@
-<article class="card">
-<header class="card-head">
-<h2 class="card-title"> <%= @event.name %></h2>
+<div class="show">
+<%= image_tag "event_background.jpg", style: "width:100%; height:320px" %>
+  <div class="container">
+    <h1 class="card-title"> <%= @event.name %></h1>
+    <p class="fw-light text-font"><%= @event.sport %></p>
+    <p class="fw-light text-font">Created by @<%= @event.user.username %></p>
+  </div>
+  <div class="card p-3 mx-3">
+      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= @event.location %></p>
+      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= @event.date %></p>
+      <p class="card-comp" ><i class="fa-regular fa-clock"></i>&nbsp&nbsp&nbsp<%= @event.time %></p>
+      <p class="card-comp" ><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= @event.capacity %></p>
+    <div class="pb-3 card-comp">
+    <%= @event.description %>
+    </div>
+        <% if @has_joined %>
+      <h2>You have joined this fun game</h2>
+    <% else %>
+      <%= simple_form_for [@event, @play] do |f| %>
+        <%= f.submit "JOIN", class: "btn-join" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-</header>
-</article>
-<%# <h1> <%= @event.name </h1> %>
-<% if @has_joined %>
-  <h2>You have joined this fun game</h2>
-<% else %>
-  <%= simple_form_for [@event, @play] do |f| %>
-    <%= f.submit "JOIN" %>
-  <% end %>
-<% end %>
+
 
 <div>
   <%= @event.user_id == current_user.id ? (button_to "Destroy this event", @event, method: :delete) : "" %>

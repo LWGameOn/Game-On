@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-lewagon">
+<div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-lewagon", style= "width: 100%;">
   <%# <div class="container-fluid"> %>
     <ul class="navbar-custom">
       <% if user_signed_in? %>
@@ -32,7 +32,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link btn1" %>
         </li>
       <% end %>
     </ul>

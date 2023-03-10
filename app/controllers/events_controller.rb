@@ -5,13 +5,15 @@ class EventsController < ApplicationController
 
   def index
     # search based on date range
-    start_date = params.dig(:date, :start)
-    end_date = params.dig(:date, :end)
+    start_date = params.dig(:search, :start)
+    end_date = params.dig(:search, :end)
+    name_sport_or_location = params.dig(:search, :name_sport_or_location)
+
 
     @events = if params[:query].present?
                 Event.near(params[:query][:location], 20)
-              elsif params[:name_sport_or_location].present?
-                Event.search_by_name_location_and_sport(params[:name_sport_or_location])
+              elsif name_sport_or_location.present?
+                Event.search_by_name_location_and_sport(name_sport_or_location)
               elsif start_date.present? && end_date.present?
                 Event.where(date: start_date..end_date)
               else

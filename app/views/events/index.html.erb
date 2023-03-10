@@ -52,8 +52,16 @@
         <% @events.each do |event| %>
           <div class="co-12 col-sm-6 col-md-4 mb-3">
             <%= link_to event_path(event), class:"text-decoration-none" do %>
-              <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
-                <%= event.name %>
+              <div class="card-trip">
+                <img src="<%= asset_path('event_background.jpg') %>"/>
+                <div class="card-trip-infos">
+                  <div>
+                    <h1><%= event.name %></h1>
+                    <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
+                    <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
+                  </div>
+                  <%= cl_image_tag(event.user.avatar.key, height: 140, width: 140, crop: :fill, class: "card-trip-user avatar-bordered") %>
+                </div>
               </div>
             <% end %>
           </div>

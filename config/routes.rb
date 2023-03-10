@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # resources :play, only: %i[destroy update]
   resources :users, only: %i[show edit update]
+  post 'users/:id/report', to: 'users#report'
 
   resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create

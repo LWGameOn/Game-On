@@ -1,43 +1,43 @@
-<div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-lewagon">
+<div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-lewagon", style= "width: 100%;">
   <%# <div class="container-fluid"> %>
     <ul class="navbar-custom">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to events_path do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          <% end %>
-          <p>Search</p>
-        </li>
-        <li class="nav-item">
-          <%= link_to calendar_path(current_user.id) do %>
-            <i class="fa-solid fa-calendar-days"></i>
-          <% end %>
-          <p>Events</p>
-        </li>
-        <li class="nav-item active">
-          <%= link_to chatrooms_path do %>
-            <i class="fa-regular fa-message"></i>
-          <% end %>
-          <p>Chats</p>
-        </li>
-        <li class="nav-item dropup comic" id="profile">
-          <%= link_to events_path, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria_haspopup: "true", aria_expanded:"false" do %>
-            <i class="fa-regular fa-user"></i>
-          <% end %>
-          <p>Profile</p>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Your Dashboard", user_path(current_user), class:"dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, class:"dropdown-item", data: {turbo_method: :delete} %>
-          </div>
-        </li>
+
+          <li class="nav-item active">
+            <%= link_to events_path do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+            <p>Search</p>
+          </li>
+          <li class="nav-item">
+            <%= link_to calendar_path(current_user.id) do %>
+              <i class="fa-solid fa-calendar-days"></i>
+              <p>Events</p>
+            <% end %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to chatrooms_path do %>
+              <i class="fa-regular fa-message"></i>
+              <p>Chats</p>
+            <% end %>
+          </li>
+          <li class="nav-item dropup comic" id="profile">
+            <%= link_to events_path, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria_haspopup: "true", aria_expanded:"false" do %>
+              <i class="fa-regular fa-user"></i>
+              <p>Profile</p>
+            <% end %>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Your Dashboard", user_path(current_user), class:"dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, class:"dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link btn1" %>
         </li>
       <% end %>
     </ul>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    </div>
   <%# </div> %>
 </div>

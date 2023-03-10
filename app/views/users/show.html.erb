@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <%# <ul class="list-group"> %>
-  <div class="profile mb-5">
+  <div class="profile mb-3">
     <p class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill, class: "profile-picture") %></p>
     <p class="list-group-item username"><%= "@#{@user.username}" %></p>
     <div class="bio">
@@ -11,7 +11,15 @@
       <div class="emails mb-3">
         <%= link_to "Edit profile", edit_user_path(@user), class:"btn1" %>
       </div>
-   <% end %>
+    <% else %>
+      <div class="emails mb-3">
+        <%= link_to "Report user", edit_user_path(@user), class:"btn-report" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="stats mb-5">
+    <h5>Game stats 💪🏼</h5>
+    <p>Games joined: <strong><%= @user.plays.count + Event.where(user: @user).count%></strong> &nbsp; Games organized: <strong><%= Event.where(user: @user).count%></strong> </p>
   </div>
   <%# almost certainly won't have email here in final version %>
   <%# </ul> %>

@@ -3,13 +3,13 @@
   <div class="container card-info">
     <h1 class="card-title"> <%= @event.name %></h1>
     <p class="fw-light text-font"><%= @event.sport.capitalize %></p>
-    <p class="fw-light text-font">Created by @<%= @event.user.username %></p>
+    <p class="fw-light text-font">Created by @<%= link_to @event.user.username, user_path(@event.user) %></p>
   </div>
   <div class="card p-3 mx-3">
-      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= @event.location %></p>
+      <p class="card-comp" ><i class="fa-solid fa-location-dot"></i>&nbsp&nbsp&nbsp<%= @event.location %></p>
       <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= @event.date.strftime('%a %d %b %Y') %></p>
       <p class="card-comp" ><i class="fa-regular fa-clock"></i>&nbsp&nbsp&nbsp<%= @event.date.strftime('%I:%M %p') %> </p>
-      <p class="card-comp" ><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= @event.capacity %></p>
+      <p class="card-comp" ><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= @event.capacity - (@event.plays.count ? @event.plays.count : 0) %> more spots</p>
     <div class="pb-3 card-comp">
     <%= @event.description %>
     </div>
@@ -18,13 +18,19 @@
     <% else %>
       <%= simple_form_for [@event, @play] do |f| %>
       <div class="btn-wrapper">
-        <%= f.submit "JOIN", class: "btn1" %>
+        <%= @event.user_id != current_user.id ? (f.submit "JOIN", class: "btn1") : (button_to "Delete this event", @event, method: :delete, class:"btn-report") %>
       </div>
       <% end %>
     <% end %>
   </div>
-</div>
-
-<div>
-  <%= @event.user_id == current_user.id ? (button_to "Destroy this event", @event, method: :delete) : "" %>
+  <% if @event.user_id == current_user.id %>
+    <div class="participants container mt-3">
+      <h3 class="card-title">Participants</h3>
+      <ul>
+      <% @event.plays.each do |play| %>
+        <li><%= link_to play.user.username, user_path(play.user.id), class:"card-comp" %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>

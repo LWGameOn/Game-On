@@ -21,7 +21,11 @@
         <%= yield %>
       </div>
       <div class="navbar-container">
-        <%= render "shared/navbar" %>
+        <% if !current_page?(new_user_registration_path) %>
+           <% if !current_page?(new_user_session_path) %>
+            <%= render "shared/navbar" %>
+           <% end %>
+        <% end %>
       </div>
     </div>
   </body>

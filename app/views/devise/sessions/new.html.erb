@@ -6,7 +6,7 @@
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5 text-style">
-                <h2 class="text-uppercase text-center mb-5 text-style ">Log In</h2>
+                <h2 class="text-uppercase text-center mb-5 mt-3 text-style ">Log In</h2>
                 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
                  <%= f.error_notification %>
                   <div class="form-inputs">
@@ -25,11 +25,14 @@
                       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
                     </div>
                   <div class="form-actions d-flex justify-content-center">
-                    <%= submit_tag "Update Profile", class: "btn btn-outline btn1 rounded-pill" %>
+                    <%= submit_tag "Log in", class: "btn1" %>
                   </div>
                 <% end %>
               </div>
-              <%= render "devise/shared/links" %>
+              <br>
+               <div style="text-align:center;">
+                  <%= render "devise/shared/links" %>
+                </div>
             </div>
           </div>
         </div>

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :plays, only: %i[create]
   end
 
+  get 'calendar/:user_id', to: 'events#calendar', as: 'calendar'
+
   # resources :play, only: %i[destroy update]
   resources :users, only: %i[show edit update]
 

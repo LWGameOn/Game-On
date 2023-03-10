@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   # shows whoever is participating in the event
   has_many :users, through: :plays
 
-  has_many :plays
+  has_many :plays, dependent: :destroy
   #  shows whoever created the event
   belongs_to :user
 

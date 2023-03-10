@@ -5,30 +5,38 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
-              <div class="card-body p-5 text-style">
-                <h2 class="text-uppercase text-center mb-5 text-style ">Sign Up</h2>
-                <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-                 <%= f.error_notification %>
+              <div class="card-body p-3 text-style">
+                <h2 class="text-uppercase text-center mb-5 text-style ">Create an event</h2>
+                <%= simple_form_for [@event]  do |f| %>
                   <div class="form-inputs">
                     <div class="form-outline mb-4">
-                     <%= f.input :email,
-                                  required: true,
-                                  autofocus: true,
-                                  input_html: { autocomplete: "email" }, class: "form-control form-control-lg" %>
+                    <%= f.input  :name, class:"form-control form-control-lg" %>
                     </div>
                     <div class="form-outline mb-4">
-                     <%= f.input :password,
-                                  required: true,
-                                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                                  input_html: { autocomplete: "new-password", class: "form-control form-control-lg"} %>
+                    <%= f.input :description,
+                                  as: :text, class: "form-control form-control-lg" %>
                     </div>
                     <div class="form-outline mb-4">
-                     <%= f.input :password_confirmation,
-                                  required: true,
-                                  input_html: { autocomplete: "new-password", class: "form-control form-control-lg" } %>
+                    <%= f.input :location,
+                      as: :search,
+                      input_html: { value: params[:location], data: {location_autocomplete_target: "location"}, class: "d-none"},
+                      wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                    <div class="form-outline mb-4">
+                    <%= f.input :date,
+                                as: :datetime,
+                                autofocus: true,
+                                html5: true, class:"form-control form-control-lg" %>
                     </div>
+                    <div class="form-outline mb-4">
+                    <%= f.input :capacity,
+                                as: :numeric, class:"form-control form-control-lg" %>
+                    </div>
+                    <div class="form-outline mb-4">
+                    <%= f.input  :sport, class:"form-control form-control-lg" %>
+                    </div>
+                  </div>
                   <div class="form-actions d-flex justify-content-center">
-                    <%= submit_tag "Update Profile", class: "btn btn-outline btn1 rounded-pill " %>
+                    <%= submit_tag "Create event", class: "btn btn-outline btn1 rounded-pill " %>
                   </div>
                 <% end %>
               </div>

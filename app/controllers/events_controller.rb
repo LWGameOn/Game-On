@@ -74,6 +74,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def calendar
+    if(user_signed_in?)
+      plays = Play.where(user: current_user)
+      @events = Event.where(user: current_user)
+      plays.each do |p|
+        @events += Event.where(id: p.event_id)
+      end
+    end
+  end
+
   private
 
   def event_params

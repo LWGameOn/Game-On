@@ -23,4 +23,8 @@ class Event < ApplicationRecord
   pg_search_scope :search_by_name_location_and_sport,
                   against: [:sport, :location, :name],
                   using: { :tsearch => { :prefix => true } }
+
+  def start_time
+    self.date
+  end
 end

@@ -48,6 +48,16 @@ locations = [
   "Kalgoorlie Super Pit, Western Australia 6432, Australia"
 ]
 
+event_url = [
+  "https://images.pexels.com/photos/163444/sport-treadmill-tor-route-163444.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
+  "https://s1.1zoom.me/big0/855/349302-admin.jpg",
+  "https://www.teahub.io/photos/full/18-189559_tablet-compatible-best-running.jpg",
+  "https://c4.wallpaperflare.com/wallpaper/515/677/288/nike-running-and-sunrise-wallpaper-preview.jpg",
+  "https://images.pexels.com/photos/209981/pexels-photo-209981.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/5967947/pexels-photo-5967947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+]
+
 i = 0
 
 20.times do
@@ -63,20 +73,29 @@ i = 0
   i += 1
 end
 
+ i = 0
+
   50.times do
+    puts i
     user = User.all.sample
     sport = ["football", "basketball", "volleyball", "tennis", "baseball", "badminton", "cricket", "rugby"]
     sport_type = sport.sample
     level = ["expert", "beginner", "intermediate"].sample
-   Event.create(
-    name: "#{sport_type.capitalize} Time",
-    description: "I'm looking for #{sport_type} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
-    location: locations.sample,
-    date: Faker::Time.forward(days: 60, period: :all),
-    capacity: rand(2..20),
-    sport: sport_type,
-    user_id: user.id
+    event_image = URI.open(event_url[i % 7])
+
+  event = Event.new(
+      name: "#{sport_type.capitalize} Time",
+      description: "I'm looking for #{sport_type} enthusiasts. If you are one of them. Please feel free to join our team. It will be #{level} friendly.",
+      location: locations.sample,
+      date: Faker::Time.forward(days: 60, period: :all),
+      capacity: rand(2..20),
+      sport: sport_type,
+      user_id: user.id
    )
+   event.photo.attach(io: event_image, filename: "event.jpg", content_type: "image/jpg")
+   event.save
+   i += 1
+
    Chatroom.create(
     event: Event.last
    )

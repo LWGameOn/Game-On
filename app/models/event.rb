@@ -4,10 +4,14 @@ class Event < ApplicationRecord
 
   # shows whoever is participating in the event
   has_many :users, through: :plays
+
+  has_many :plays
   #  shows whoever created the event
   belongs_to :user
 
   has_one :chatroom, dependent: :destroy
+
+  has_one_attached :photo
 
   geocoded_by :location
 
@@ -19,4 +23,8 @@ class Event < ApplicationRecord
   pg_search_scope :search_by_name_location_and_sport,
                   against: [:sport, :location, :name],
                   using: { :tsearch => { :prefix => true } }
+
+  def start_time
+    self.date
+  end
 end

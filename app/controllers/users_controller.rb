@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def report
+    
+  end
+
   private
 
   def set_user

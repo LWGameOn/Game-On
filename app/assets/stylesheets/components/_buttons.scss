@@ -11,7 +11,7 @@
 }
 
 .btn1:hover {
-  background-color: white;
+  background-color: transparent;
   color: #569674;
 }
 
@@ -30,4 +30,21 @@
 .btn2:hover {
   background-color: #569674;
   color: white;
+}
+
+.btn-report {
+  background-color: #C1666B;
+  padding: 6px 13px;
+  border-radius: 4px;
+  border: 1px solid #b46064;
+  color: white;
+  box-shadow: 0px 1px 1px 0px rgba(107,106,106,0.3);
+  font-weight: 500;
+  margin-left: 6px;
+  text-decoration: none;
+}
+
+.btn-report:hover {
+  background-color: white;
+  color: #C1666B;
 }

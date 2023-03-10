@@ -7,16 +7,16 @@
   <% end %>
 
   <div class="row m-2 d-flex">
-    <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-flex' } }) do |f| %>
-      <div class="row row m-2 d-flex justify-content-left" >
-        <div class="col-12 mt-2">
+    <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex p-2' } }) do |f| %>
+      <div class="row d-flex justify-content-left" >
+        <div class="col-12 mt-1">
           <%= f.input :name_sport_or_location,
                       class: 'form-control',
                       label: false,
                       placeholder: "A name, a sport or a location" %>
         </div>
       </div>
-      <div class="row m-2 d-flex justify-content-left">
+      <div class="row d-flex justify-content-left">
         <div class="col-6">
           <div class="form-group">
             <%= f.input :start,
@@ -35,7 +35,7 @@
                         html5: true, class: "form-control" %>
           </div>
         </div>
-        <div class="col-2 m-2">
+        <div class="col-2 m-1">
           <%= submit_tag "Search", class: "btn btn-outline btn1 rounded-pill " %>
         </div>
       </div>

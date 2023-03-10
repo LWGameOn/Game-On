@@ -81,7 +81,7 @@ class EventsController < ApplicationController
       @events += Event.where(id: p.event_id)
     end
   end
-
+  
   private
 
   def event_params

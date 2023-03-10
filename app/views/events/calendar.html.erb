@@ -1,11 +1,29 @@
 <div class="container">
-  <%= month_calendar(events: @events) do |date, events| %>
-    <%= date.day %>
+  <h2>Event Schedule</h2>
+  <div class="container monthly_calendar">
+    <%= month_calendar(events: @events) do |date, events| %>
+      <%= date.day %>
 
-    <% events.each do |e| %>
-      <div>
-        <%= link_to e.name, event_path(e), class: "nav-link btn1"%>
-      </div>
+      <% events.each do |e| %>
+        <div>
+          <%= link_to e.name, event_path(e), class: "nav-link btn1"%>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class="container event-list">
+    <% if @events.any? %>
+        <% @events.each do |event| %>
+          <div class="co-12 col-sm-6 col-md-4 mb-3">
+            <%= link_to event_path(event), class:"text-decoration-none" do %>
+              <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
+                <%= event.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>no events found!</p>
+      <% end %>
+  </div>
 </div>

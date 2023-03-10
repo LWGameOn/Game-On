@@ -1,0 +1,12 @@
+.monthly_calendar {
+  display: none;
+}
+
+@media only screen and (min-width: 500px) {
+  .monthly_calendar {
+    display: block;
+  }
+  .event-list {
+    display: none;
+  }
+}

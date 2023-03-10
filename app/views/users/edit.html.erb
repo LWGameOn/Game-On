@@ -1,10 +1,3 @@
-<%=  simple_form_for [@user] do |f| %>
-  <%= f.input :username %>
-  <%= f.input :bio %>
-  <%= f.input :avatar, as: :file %>
-  <%= f.submit "Update Profile", class: "btn btn-dark" %>
-<% end %>
-
 <div class="container">
   <section class="vh-100 bg-image;">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -26,12 +19,6 @@
                     <div class="form-outline mb-4">
                     <%= f.input :avatar,
                                  as: :file, class: "form-control form-control-lg" %>
-                    <div class="form-outline mb-4">
-                    <%= f.input :date,
-                                as: :datetime,
-                                autofocus: true,
-                                html5: true, class:"form-control form-control-lg" %>
-                    </div>
                   </div>
                   <div class="form-actions d-flex justify-content-center">
                     <%= submit_tag "Update Profile", class: "btn btn-outline btn1 rounded-pill " %>

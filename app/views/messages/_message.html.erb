@@ -1,6 +1,6 @@
 <div id="message-<%= message.id %>">
   <small>
-    <strong><%= message.user.username ? message.user.username : message.user.email %></strong>
+    <strong><%= link_to message.user.username ? message.user.username : message.user.email, user_path(message.user.id) %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>

@@ -19,9 +19,27 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-top: 3px;
 }
 
 .nav-item a {
   text-decoration: none;
   color: #519872;
+  font-size: 23px;
+}
+
+.calendar {
+  margin-left: 9px;
+}
+
+.chat {
+  margin-right: 2px;
+}
+
+.explore {
+  margin-left: 2px;
+}
+
+.profile-icon {
+  margin-left: 2px;
 }

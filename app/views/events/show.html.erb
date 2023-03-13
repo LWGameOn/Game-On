@@ -13,12 +13,14 @@
     <div class="pb-3 card-comp">
     <%= @event.description %>
     </div>
-        <% if @has_joined %>
-      <h2>You have joined this fun game</h2>
-    <% else %>
+      <% if @has_joined %>
+        <h3>You have joined this fun game</h3>
+        <p class="mt-2"><%= link_to "Chat", chatroom_path(@event.id), class:"btn1" %></p>
+      <% else %>
       <%= simple_form_for [@event, @play] do |f| %>
       <div class="btn-wrapper">
-        <%= @event.user_id != current_user.id ? (f.submit "JOIN", class: "btn1") : (button_to "Delete this event", @event, method: :delete, class:"btn-report") %>
+        <p class="mt-2"><%= link_to "Chat", chatroom_path(@event.id), class:"btn1" %></p>
+        <p class="mt-2"><%= @event.user_id != current_user.id ? (f.submit "JOIN", class: "btn1") : (link_to "Delete this event", event_path(@event), data: { turbo_method: :delete, confirm: 'Are You sure?' }, class:"btn-report") %></p>
       </div>
       <% end %>
     <% end %>

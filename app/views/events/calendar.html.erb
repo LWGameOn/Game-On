@@ -1,7 +1,10 @@
 <div class="container">
+  <div class="button-right py-2" style="text-align: right;">
+    <%= link_to "Create an event", new_event_path, class: "btn2" %>
+  </div>
   <h2>Event Schedule</h2>
   <% if user_signed_in? %>
-    <div class="container monthly_calendar">
+    <div class="container monthly_calendar mt-2">
       <%= month_calendar(events: @events) do |date, events| %>
         <%= date.day %>
 
@@ -12,7 +15,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="container event-list">
+    <div class="container event-list mt-3">
       <% if @events.any? %>
         <% @events.each do |event| %>
           <%= render "shared/card", event: event %>

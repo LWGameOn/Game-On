@@ -27,7 +27,17 @@ class EventsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: { event: event })
       }
     end
-
+    if params[:filter].present?
+      if(params[:filter] == "looking")
+        @events = Event.all.select do |event|
+          event.capacity > Play.where(event: event).count
+        end
+      elsif params[:filter] == "full"
+        @events = Event.all.select do |event|
+          event.capacity <= Play.where(event: event).count
+        end
+      end
+    end
   end
 
   def show

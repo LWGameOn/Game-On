@@ -4,16 +4,15 @@
   border-radius: 4px;
   border: 1px solid #569674;
   color: white;
-  box-shadow: 0px 1px 1px 0px rgba(107,106,106,0.3);
+  box-shadow: 0px 1px 1px 0px rgba(107, 106, 106, 0.3);
   font-weight: 500;
   margin-left: 6px;
   text-decoration: none;
   font-family: $body-h1-font;
-}
-
-.btn1:hover {
-  background-color: transparent;
-  color: #569674;
+  &:hover {
+    background-color: rgba($color: #000000, $alpha: 0);
+    color: #569674;
+  }
 }
 
 .btn2 {
@@ -35,12 +34,12 @@
 }
 
 .btn-report {
-  background-color: #C1666B;
+  background-color: #c1666b;
   padding: 6px 13px;
   border-radius: 4px;
   border: 1px solid #b46064;
   color: white;
-  box-shadow: 0px 1px 1px 0px rgba(107,106,106,0.3);
+  box-shadow: 0px 1px 1px 0px rgba(107, 106, 106, 0.3);
   font-weight: 500;
   margin-left: 6px;
   text-decoration: none;
@@ -49,5 +48,5 @@
 
 .btn-report:hover {
   background-color: white;
-  color: #C1666B;
+  color: #c1666b;
 }

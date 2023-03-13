@@ -17,18 +17,12 @@
     </div>
     <div class="container event-list mt-3">
       <% if @events.any? %>
-          <% @events.each do |event| %>
-            <div class="co-12 col-sm-6 col-md-4 mb-3">
-            <%= link_to event_path(event), class:"text-decoration-none" do %>
-                <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
-                  <%= event.name %>
-                </div>
-            <% end %>
-            </div>
-          <% end %>
-        <% else %>
-          <p>no events found!</p>
+        <% @events.each do |event| %>
+          <%= render "shared/card", event: event %>
         <% end %>
+      <% else %>
+        <p>no events found!</p>
+      <% end %>
     </div>
   <% else %>
     <p>Must be signed in to see schedule</p>

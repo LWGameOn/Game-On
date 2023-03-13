@@ -12,11 +12,19 @@
 }
 
 .map-icon {
-  text-align: center;
   font-size: 35px;
+  color: #519872;
+  // position: fixed;
+  // left: 50%;
 }
 
 .map-size {
   width: 100%;
   height: 600px;
+}
+
+.event-icon {
+  text-align: center;
+  font-size: 35px;
+  color: #519872;
 }

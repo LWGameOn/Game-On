@@ -15,3 +15,6 @@ application.register("location-autocomplete", LocationAutocompleteController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import ToggleMapController from "./toggle_map_controller"
+application.register("toggle-map", ToggleMapController)

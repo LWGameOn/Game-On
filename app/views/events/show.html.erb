@@ -3,7 +3,7 @@
   <div class="container card-info">
     <h1 class="card-title"> <%= @event.name %></h1>
     <p class="fw-light text-font"><%= @event.sport.capitalize %></p>
-    <p class="fw-light text-font">Created by @<%= link_to @event.user.username, user_path(@event.user) %></p>
+    <p class="fw-light text-font">Created by <%= link_to "@#{(@event.user == current_user ? "you" : @event.user.username)}", user_path(@event.user) %></p>
   </div>
   <div class="card p-3 mx-3">
       <p class="card-comp" ><i class="fa-solid fa-location-dot"></i>&nbsp&nbsp&nbsp<%= @event.location %></p>
@@ -18,7 +18,7 @@
         <p class="mt-2"><%= link_to "Chat", chatroom_path(@event.id), class:"btn1" %></p>
       <% else %>
       <%= simple_form_for [@event, @play] do |f| %>
-      <div class="btn-wrapper">
+      <div class="btn-wrapper d-flex justify-content-between">
         <p class="mt-2"><%= link_to "Chat", chatroom_path(@event.id), class:"btn1" %></p>
         <p class="mt-2"><%= @event.user_id != current_user.id ? (f.submit "JOIN", class: "btn1") : (link_to "Delete this event", event_path(@event), data: { turbo_method: :delete, confirm: 'Are You sure?' }, class:"btn-report") %></p>
       </div>
@@ -30,7 +30,9 @@
       <h3 class="card-title">Participants</h3>
       <ul>
       <% @event.plays.each do |play| %>
-        <li><%= link_to play.user.username, user_path(play.user.id), class:"card-comp" %></li>
+        <% if play.user != current_user %>
+          <li><%= link_to play.user.username, user_path(play.user.id), class:"card-comp" %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>

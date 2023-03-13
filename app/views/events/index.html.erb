@@ -6,7 +6,7 @@
     </div>
   <% end %>
 
-  <div class="row m-2 d-flex">
+  <div class="row m-2 d-flex" id="events-search">
     <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex mt-3'} }) do |f| %>
       <%# <div class="row d-flex justify-content-left" > %>
         <%# <div class="col-12 mt-1"> %>

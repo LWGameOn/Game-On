@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
   get 'users/show'
   get 'user/show'
   devise_for :users
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :events do
     resources :plays, only: %i[create]
+    resources :reviews, only: [:create]
   end
+  resources :reviews, only: :destroy
 
   get 'calendar/:user_id', to: 'events#calendar', as: 'calendar'
 

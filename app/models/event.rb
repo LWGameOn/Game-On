@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  default_scope { order(date: :asc) }
   # search
   include PgSearch::Model
 
@@ -8,6 +9,9 @@ class Event < ApplicationRecord
   has_many :plays, dependent: :destroy
   #  shows whoever created the event
   belongs_to :user
+
+  # review
+  has_many :reviews, dependent: :destroy
 
   has_one :chatroom, dependent: :destroy
 

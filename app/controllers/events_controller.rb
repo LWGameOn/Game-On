@@ -36,6 +36,7 @@ class EventsController < ApplicationController
     players = Play.where(event_id: @event.id).map do |player|
       player.user_id
     end
+    @review = Review.new
     @has_joined = players.include?(current_user.id)
     @play = Play.new
     @creator

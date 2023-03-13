@@ -3,6 +3,9 @@ class PlaysController < ApplicationController
     @play = Play.new
     @play.user = current_user
     @play.event = Event.find(params[:event_id])
+    chatroom = Chatroom.new
+    chatroom.event = @play.event
+    chatroom.save
     if @play.save!
       redirect_to event_path(@play.event)
     else

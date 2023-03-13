@@ -2,4 +2,4 @@
 <p><%= event.date.strftime('%a %d %b %Y') %> </p>
 <p><%= event.date.strftime('%I:%M %p') %> </p>
 <p><%= event.location %></p>
-<%= link_to "See details", event_path(event.id) %>
+<%= link_to "See details", event_path(event.id), class:"btn1" %>

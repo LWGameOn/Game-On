@@ -9,6 +9,9 @@ class Event < ApplicationRecord
   #  shows whoever created the event
   belongs_to :user
 
+  # review
+  has_many :reviews, dependent: :destroy
+
   has_one :chatroom, dependent: :destroy
 
   has_one_attached :photo

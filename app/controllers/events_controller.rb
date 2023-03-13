@@ -93,6 +93,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def details
+    @event = Event.find(params[:event_id])
+    render partial: "shared/card", locals: { event: @event }, formats: [:html], status: :ok
+  end
+
   private
 
   def event_params

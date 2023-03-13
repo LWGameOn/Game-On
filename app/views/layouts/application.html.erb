@@ -20,7 +20,7 @@
       <div class="content-container">
         <%= yield %>
       </div>
-      <div class="navbar-container">
+      <div class="navbar-container mb-3">
         <% if !current_page?(new_user_registration_path) %>
            <% if !current_page?(new_user_session_path) %>
             <%= render "shared/navbar" %>

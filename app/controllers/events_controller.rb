@@ -42,11 +42,11 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    players = Play.where(event_id: @event.id).map do |player|
+    @players = Play.where(event_id: @event.id).map do |player|
       player.user_id
     end
     @review = Review.new
-    @has_joined = players.include?(current_user.id)
+    # @has_joined = players.include?(current_user.id)
     @play = Play.new
     @creator
   end

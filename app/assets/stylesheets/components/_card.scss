@@ -12,7 +12,6 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-
 .card-trip {
   overflow: hidden;
   background: white;
@@ -68,4 +67,8 @@
   font-family: $body-h1-font;
   font-size: 38px;
   font-weight: bold;
+}
+
+.card-body{
+  color :#0E1B14
 }

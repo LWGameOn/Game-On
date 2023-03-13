@@ -16,5 +16,7 @@ class User < ApplicationRecord
 
   has_many :chatrooms, through: :events
 
+  has_many :reviews
+
   has_one_attached :avatar, dependent: :destroy
 end

@@ -8,6 +8,7 @@
   font-weight: 500;
   margin-left: 6px;
   text-decoration: none;
+  font-family: $body-h1-font;
 }
 
 .btn1:hover {
@@ -25,6 +26,7 @@
   font-weight: 500;
   text-decoration: none;
   font-weight: bold;
+  font-family: $body-h1-font;
 }
 
 .btn2:hover {
@@ -42,9 +44,29 @@
   font-weight: 500;
   margin-left: 6px;
   text-decoration: none;
+  font-family: $body-h1-font;
 }
 
 .btn-report:hover {
   background-color: white;
   color: #C1666B;
+}
+
+.btn-calendar {
+  background-color: #519872;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #569674;
+  color: white;
+  box-shadow: 0px 1px 1px 0px rgba(107,106,106,0.3);
+  text-decoration: none;
+  font-size: 10px;
+  font-family: $body-h1-font;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.btn-calendar:hover {
+  background-color: transparent;
+  color: #569674;
 }

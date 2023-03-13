@@ -9,7 +9,6 @@ class EventsController < ApplicationController
     end_date = params.dig(:search, :end)
     name_sport_or_location = params.dig(:search, :name_sport_or_location)
 
-
     @events = if params[:query].present?
                 Event.near(params[:query][:location], 20)
               elsif name_sport_or_location.present?
@@ -36,6 +35,7 @@ class EventsController < ApplicationController
     players = Play.where(event_id: @event.id).map do |player|
       player.user_id
     end
+    @review = Review.new
     @has_joined = players.include?(current_user.id)
     @play = Play.new
     @creator
@@ -49,6 +49,14 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
+      # redirect_to event_plays_path(@event)
+      play = Play.new
+      play.event = @event
+      play.user = current_user
+      play.save
+      chatroom = Chatroom.new
+      chatroom.event = @event
+      chatroom.save
       redirect_to events_path(@event)
     else
       render :new
@@ -67,6 +75,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
     if @event.destroy!
       redirect_to events_path
     else
@@ -82,6 +91,11 @@ class EventsController < ApplicationController
         @events += Event.where(id: p.event_id)
       end
     end
+  end
+
+  def details
+    @event = Event.find(params[:event_id])
+    render partial: "shared/card", locals: { event: @event }, formats: [:html], status: :ok
   end
 
   private

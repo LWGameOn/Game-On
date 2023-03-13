@@ -1,34 +1,34 @@
-<div class="container">
+<div class="container" data-controller="calendar-show">
+  <div class="button-right py-3" style="text-align: right;">
+    <%= link_to "Create an event", new_event_path, class: "btn2" %>
+  </div>
   <h2>Event Schedule</h2>
   <% if user_signed_in? %>
-    <div class="container monthly_calendar">
+    <div class="container monthly_calendar mt-2" style="max-width:100%">
       <%= month_calendar(events: @events) do |date, events| %>
         <%= date.day %>
 
         <% events.each do |e| %>
           <div>
-            <%= link_to e.name, event_path(e), class: "nav-link btn1"%>
+            <button class="btn-calendar" data-event-id="<%= e.id %>" data-event-url="<%= event_details_path(e) %>" data-action="click->calendar-show#showCard"
+            data-calendar-show-target="button"><i class="fa-solid fa-futbol"></i></button>
           </div>
         <% end %>
       <% end %>
     </div>
-    <div class="container event-list">
+    <%# <div class="container event-list mt-3">
       <% if @events.any? %>
-          <% @events.each do |event| %>
-            <div class="co-12 col-sm-6 col-md-4 mb-3">
-            <%= link_to event_path(event), class:"text-decoration-none" do %>
-                <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
-                  <%= event.name %>
-                </div>
-            <% end %>
-            </div>
-          <% end %>
-        <% else %>
-          <p>no events found!</p>
-        <% end %>
+        <%# <% @events.each do |event| %>
+          <%# <%= render "shared/card", event: event %>
+        <%# <% end %>
+      <%# <% else %>
+        <%# <p>no events found!</p>
+      <% end %>
+    <%# </div> %>
+    <div class="event-details" data-calendar-show-target="card">
+      <%= render "shared/card", event: Event.first %>
     </div>
   <% else %>
     <p>Must be signed in to see schedule</p>
   <% end %>
-  <h2>Not a word about styling thanks 😘</h2>
 </div>

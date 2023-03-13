@@ -5,25 +5,25 @@
 
           <li class="nav-item active">
             <%= link_to events_path do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass explore"></i>
+              <p>Explore</p>
             <% end %>
-            <p>Search</p>
           </li>
           <li class="nav-item">
             <%= link_to calendar_path(current_user.id) do %>
-              <i class="fa-solid fa-calendar-days"></i>
-              <p>Events</p>
+              <i class="fa-solid fa-calendar-days calendar"></i>
+              <p>Calendar</p>
             <% end %>
           </li>
           <li class="nav-item active">
             <%= link_to chatrooms_path do %>
-              <i class="fa-regular fa-message"></i>
+              <i class="fa-regular fa-message chat"></i>
               <p>Chats</p>
             <% end %>
           </li>
           <li class="nav-item dropup comic" id="profile">
             <%= link_to events_path, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria_haspopup: "true", aria_expanded:"false" do %>
-              <i class="fa-regular fa-user"></i>
+              <i class="fa-regular fa-user profile-icon"></i>
               <p>Profile</p>
             <% end %>
 

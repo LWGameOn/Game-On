@@ -1,0 +1,13 @@
+<div class="col mb-3">
+  <%= link_to event_path(event), class:"text-decoration-none" do %>
+    <div style="width:300px;">
+      <div class="card position-relative">
+        <%= cl_image_tag(event.photo.key, height: 260, width: 260, crop: :fill, class:"card-img-top event-img") if event.photo.key %>
+        <div class="card-body">
+          <h5 class="card-title fw-bold"><%= event.name %></h5>
+          <p class="card-text"> <i class="fa-solid fa-location-crosshairs"></i> <%= event.location %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

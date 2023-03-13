@@ -23,7 +23,7 @@
                       wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
                     <div class="form-outline mb-4">
                     <%= f.input :date,
-                                as: :datetime,
+                                as: :datetime, minute_step: 15,
                                 autofocus: true,
                                 html5: true, class:"form-control form-control-lg" %>
                     </div>

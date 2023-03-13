@@ -1,0 +1,7 @@
+<div>
+  <%= simple_form_for [@event, @review] do |f| %>
+    <%= f.input :content, label:"Write a review"%>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to "See all events", events_path %>
+</div>

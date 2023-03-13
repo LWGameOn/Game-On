@@ -1,62 +1,86 @@
-<div class="container">
-
+<div class="container" data-controller="map toggle-map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>">
+  <div class="icons bg-white position-sticky text-center" style="top: 0; z-index: 100">
+      <div class="map-icon" data-action="click->toggle-map#mapToggle click->map#resize"  data-toggle-map-target="mapIcon">
+        <i class="fa-solid fa-map-location-dot"></i>
+      </div>
+      <div class="event-icon d-none" data-action="click->toggle-map#eventToggle" data-toggle-map-target="eventIcon">
+      <i class="fa-solid fa-list"></i>
+      </div>
+  </div>
   <% if @events.any? %>
     <div class="row">
-      <%= render "shared/map" %>
+      <div class="d-none" data-toggle-map-target="map">
+        <%= render "shared/map" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="row m-2 d-flex" id="events-search">
-    <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex mt-3'} }) do |f| %>
-      <%# <div class="row d-flex justify-content-left" > %>
-        <%# <div class="col-12 mt-1"> %>
-          <%= f.input_field :name_sport_or_location,
-                      class: 'form-control mt-3',
-                      label: false,
-                      placeholder: "A name, a sport or a location" %>
-        <%# </div> %>
-      <%# </div> %>
-      <div class="row d-flex justify-content-left">
-        <div class="col-6">
-          <div class="form-group">
-            <%= f.input :start,
-                        as: :date,
-                        autofocus: true,
-                        label: true,
-                        html5: true, class: "form-control" %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <%= f.input :end,
-                        as: :date,
-                        autofocus: true,
+  <div data-toggle-map-target="eventPage">
+    <div class="row m-2 d-flex">
+      <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex mt-3'} }) do |f| %>
+        <%# <div class="row d-flex justify-content-left" > %>
+          <%# <div class="col-12 mt-1"> %>
+            <%= f.input_field :name_sport_or_location,
+                        class: 'form-control mt-3',
                         label: false,
-                        html5: true, class: "form-control" %>
+                        placeholder: "A name, a sport or a location" %>
+          <%# </div> %>
+        <%# </div> %>
+        <div class="row d-flex justify-content-left">
+          <div class="col-6">
+            <div class="form-group">
+              <%= f.input :start,
+                          as: :date,
+                          autofocus: true,
+                          label: "from",
+                          html5: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <%= f.input :end,
+                          as: :date,
+                          autofocus: true,
+                          label: "to",
+                          html5: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-2 m-1">
+            <%= submit_tag "Search", class: "btn1 " %>
           </div>
         </div>
-        <div class="col-2 m-1">
-          <%= submit_tag "Search", class: "btn1 " %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="container py-5">
-    <div class="d-flex align-items-center justify-content-between mb-3">
-      <h3 class="mb-0 card-title">Events</h3>
-      <div class="button-right" style="text-align: right;">
+    <div class="container py-5">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h3 class="mb-0 title">Events</h3>
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
-    </div>
-    <div class="row">
-      <% if @events.any? %>
-        <% @events.each do |event| %>
-          <%= render "shared/card", event: event %>
+      <div class="row">
+        <% if @events.present? %>
+          <% @events.each do |event| %>
+            <div class="co-12 col-sm-6 col-md-4 mb-3">
+              <%= link_to event_path(event), class:"text-decoration-none" do %>
+                <div class="card-trip">
+                  <% if event.photo.attached? %>
+                    <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
+                  <% end %>
+                  <div class="card-trip-infos">
+                    <div>
+                      <h1 id="eventName"><%= event.name %></h1>
+                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
+                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
+                    </div>
+                    <%= cl_image_tag(event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>no events found!</p>
         <% end %>
-      <% else %>
-        <p>no events found!</p>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

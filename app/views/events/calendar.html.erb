@@ -18,7 +18,9 @@
     <div class="container event-list mt-3">
       <% if @events.any? %>
         <% @events.each do |event| %>
-          <%= render "shared/card", event: event %>
+          <% if event.date.after?(Date.today) %>
+            <%= render "shared/card", event: event %>
+          <% end %>
         <% end %>
       <% else %>
         <p>no events found!</p>

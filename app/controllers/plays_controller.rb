@@ -4,7 +4,6 @@ class PlaysController < ApplicationController
     @play.user = current_user
     @play.event = Event.find(params[:event_id])
     if @play.save!
-      raise
       redirect_to event_path(@play.event)
     else
       render :new, status: :bad_request

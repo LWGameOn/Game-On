@@ -21,12 +21,13 @@
     <h5>Game stats 💪🏼</h5>
     <p>Games joined: <strong><%= @user.plays.count + Event.where(user: @user).count%></strong> &nbsp; Games organized: <strong><%= Event.where(user: @user).count%></strong> </p>
   </div>
-  <%# almost certainly won't have email here in final version %>
-  <%# </ul> %>
   <% if current_user == @user %>
-    <div class="container">
+    <div class="container mt-3">
+      <div class="button-right" style="text-align: right;">
+        <%= link_to "Create an event", new_event_path, class: "btn2" %>
+      </div>
       <% if Event.where(user: @user).present? %>
-        <h2>Your Posted Events</h2>
+        <h2 class="mt-3">Your Posted Events</h2>
         <% Event.where(user: @user).each do |e| %>
           <div class="co-12 col-sm-6 col-md-4 mb-3">
             <%= link_to event_path(e), class:"text-decoration-none" do %>

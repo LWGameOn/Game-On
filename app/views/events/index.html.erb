@@ -39,30 +39,20 @@
           <%= submit_tag "Search", class: "btn1 " %>
         </div>
       </div>
-     <% end %>
+    <% end %>
   </div>
 
   <div class="container py-5">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h3 class="mb-0 card-title">Events</h3>
-      <%= link_to "Create an event", new_event_path, class: "btn2" %>
+      <div class="button-right" style="text-align: right;">
+        <%= link_to "Create an event", new_event_path, class: "btn2" %>
+      </div>
     </div>
     <div class="row">
       <% if @events.any? %>
         <% @events.each do |event| %>
-          <div class="col mb-3">
-            <%= link_to event_path(event), class:"text-decoration-none" do %>
-              <div style="width:300px;">
-                <div class="card position-relative">
-                  <%= cl_image_tag(event.photo.key, height: 260, width: 260, crop: :fill, class:"card-img-top event-img") if event.photo.key %>
-                <div class="card-body">
-                <h5 class="card-title fw-bold"><%= event.name %></h5>
-                 <p class="card-text"> <i class="fa-solid fa-location-crosshairs"></i> <%= event.location %></p>
-             </div>
-           </div>
-          </div>
-            <% end %>
-          </div>
+          <%= render "shared/card", event: event %>
         <% end %>
       <% else %>
         <p>no events found!</p>

@@ -9,7 +9,6 @@ class EventsController < ApplicationController
     end_date = params.dig(:search, :end)
     name_sport_or_location = params.dig(:search, :name_sport_or_location)
 
-
     @events = if params[:query].present?
                 Event.near(params[:query][:location], 20)
               elsif name_sport_or_location.present?
@@ -50,6 +49,14 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
+      # redirect_to event_plays_path(@event)
+      play = Play.new
+      play.event = @event
+      play.user = current_user
+      play.save
+      chatroom = Chatroom.new
+      chatroom.event = @event
+      chatroom.save
       redirect_to events_path(@event)
     else
       render :new
@@ -68,6 +75,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
     if @event.destroy!
       redirect_to events_path
     else

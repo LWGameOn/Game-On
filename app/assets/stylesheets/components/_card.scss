@@ -48,7 +48,24 @@
 
 .card-trip-infos .card-trip-user {
   position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 60px;
+  right: 20px;
+  top: -45px;
+  width: 100px;
+}
+
+.card-comp {
+  font-family: $body-p-font;
+  color: $black;
+}
+
+#eventName {
+  font-family: $body-h1-font;
+  color: $black;
+  font-weight: bold;
+}
+
+.title {
+  font-family: $body-h1-font;
+  font-size: 38px;
+  font-weight: bold;
 }

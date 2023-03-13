@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
   get 'users/show'
   get 'user/show'
   devise_for :users
@@ -8,8 +9,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :events do
+    get :details
     resources :plays, only: %i[create]
+    resources :reviews, only: [:create]
   end
+  resources :reviews, only: :destroy
 
   get 'calendar/:user_id', to: 'events#calendar', as: 'calendar'
 

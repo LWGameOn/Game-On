@@ -45,6 +45,7 @@ class EventsController < ApplicationController
     players = Play.where(event_id: @event.id).map do |player|
       player.user_id
     end
+    @review = Review.new
     @has_joined = players.include?(current_user.id)
     @play = Play.new
     @creator
@@ -100,6 +101,11 @@ class EventsController < ApplicationController
         @events += Event.where(id: p.event_id)
       end
     end
+  end
+
+  def details
+    @event = Event.find(params[:event_id])
+    render partial: "shared/card", locals: { event: @event }, formats: [:html], status: :ok
   end
 
   private

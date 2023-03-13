@@ -34,6 +34,10 @@
                     <div class="form-outline mb-4">
                     <%= f.input  :sport, class:"form-control form-control-lg" %>
                     </div>
+                    <%= f.input :photo,
+                                   required: true,
+                                   autofocus: true,
+                                   as: :file, class: "form-control form-control-lg" %>
                   </div>
                   <div class="form-actions d-flex justify-content-center">
                     <%= submit_tag "Create event", class: "btn1" %>

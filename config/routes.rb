@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get 'calendar/:user_id', to: 'events#calendar', as: 'calendar'
 
   # resources :play, only: %i[destroy update]
-  resources :users, only: %i[show edit update]
-  post 'users/:id/report', to: 'users#report'
+  resources :users, only: %i[show edit update] do
+    resources :reports, only: %i[new create]
+  end
 
   resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create

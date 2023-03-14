@@ -15,7 +15,7 @@
       </div>
     <% else %>
       <div class="emails mb-3">
-        <%= link_to "Report user", edit_user_path(@user), class:"btn-report" %>
+        <%= link_to "Report user", new_user_report_path(@user), class:"btn-report" %>
       </div>
     <% end %>
   </div>
@@ -82,4 +82,3 @@
     </div>
   <% end %>
 </div>
-

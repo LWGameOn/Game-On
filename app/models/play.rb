@@ -3,5 +3,5 @@ class Play < ApplicationRecord
   belongs_to :event
 
   validates :user, uniqueness: { scope: :event,
-            message: "you already joined this event" }
+          message: "you already joined this event" }
 end

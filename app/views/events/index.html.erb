@@ -70,6 +70,8 @@
                 <div class="card-trip">
                   <% if event.photo.attached? %>
                     <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
+                  <% else %>
+                    <%= image_tag "event_background.jpg", class: "card-img-top event-img" %>
                   <% end %>
                   <div class="card-trip-infos">
                     <div>

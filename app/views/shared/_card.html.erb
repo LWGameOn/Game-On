@@ -1,13 +1,20 @@
 <div class="col mb-3">
   <%= link_to event_path(event), class:"text-decoration-none" do %>
-    <div style="width:300px;">
-      <div class="card position-relative">
-        <%= cl_image_tag(event.photo.key, height: 260, width: 260, crop: :fill, class:"card-img-top event-img") if event.photo.key %>
-        <div class="card-body">
-          <h5 class="card-title fw-bold"><%= event.name %></h5>
-          <p class="card-text"> <i class="fa-solid fa-location-crosshairs"></i> <%= event.location %></p>
-        </div>
+  <div class="card-trip">
+    <% if event.photo.attached? %>
+      <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
+    <% else %>
+      <%= image_tag "event_background.jpg", class: "card-img-top event-img" %>
+    <% end %>
+    <div class="card-trip-infos">
+      <div>
+        <h1 id="eventName"><%= event.name %></h1>
+        <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
+        <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
+        <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %></p>
       </div>
+        <%= cl_image_tag(event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
     </div>
-  <% end %>
+  </div>
+    <% end %>
 </div>

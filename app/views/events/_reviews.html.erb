@@ -11,6 +11,7 @@
 </ul>
 <div>
   <%= simple_form_for [@event, @review] do |f| %>
+    <%= f.error_notification %>
     <%= f.input :content, label:"Write a review"%>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>

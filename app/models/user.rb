@@ -18,5 +18,7 @@ class User < ApplicationRecord
 
   has_many :reviews
 
+  has_many :reports
+
   has_one_attached :avatar, dependent: :destroy
 end

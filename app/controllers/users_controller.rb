@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
+    @report = Report.new
   end
 
   def edit
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def report
-    
+
   end
 
   private

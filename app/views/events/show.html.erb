@@ -39,12 +39,22 @@
   <% end %>
 </div>
 
-<div>
+<div class="review">
     <p><strong>Reviews</strong></p>
     <% if @event.date.after?(DateTime.now) %>
-    <ul class="list-group">
       <% @event.reviews.each do |review| %>
-        <li class="list-group-item"><%= review.content %></li>
+         <div class="col-md-6 mb-4 mb-md-0">
+         <% if review.user.avatar.attached? %>
+      <div class="d-flex justify-content-center mb-4">
+         <%= cl_image_tag(review.user.avatar.key, class: "card-trip-user avatar-bordered") %>
+      </div>
+      <% end %>
+      <p class="lead my-3 text-muted">
+        "Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut
+        perspiciatis unde omnis."
+      </p>
+      <p class="font-italic font-weight-normal mb-0">- Anna Morian</p>
+    </div>
         <%if current_user.reviews.include?(review)%>
           <%= link_to "Delete",
           review_path(review),
@@ -52,7 +62,6 @@
           %>
         <% end %>
        <% end %>
-    </ul>
     <% end %>
 </div>
 

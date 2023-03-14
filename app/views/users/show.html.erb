@@ -1,7 +1,9 @@
 <div class="container mt-3">
   <%# <ul class="list-group"> %>
   <div class="profile mb-3">
-    <p class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill, class: "profile-picture") %></p>
+    <% if current_user.avatar.attached? %>
+      <p class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill, class: "profile-picture") %></p>
+    <% end %>
     <p class="list-group-item username card-title" style="font-size:30px;"><%= "@#{@user.username}" %></p>
     <div class="bio">
       <p class="list-group-item card-comp">Bio: <br><%= @user.bio %></p>

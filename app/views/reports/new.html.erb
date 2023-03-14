@@ -1,0 +1,7 @@
+<div>
+  <%= simple_form_for [@user, @report] do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :complaint, label:"Reasons for reporting"%>
+    <%= f.submit class: 'btn-report' %>
+  <% end %>
+</div>

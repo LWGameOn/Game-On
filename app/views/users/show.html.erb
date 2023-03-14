@@ -44,13 +44,15 @@
         <h2 class="card-title">Your Joined Events</h2>
         <div class="row">
           <% Play.where(user: @user).each do |p| %>
-            <div class="co-12 col-sm-6 col-md-4 mb-3">
-              <%= link_to event_path(p.event), class:"text-decoration-none" do %>
-                <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
-                  <%= p.event.name %>
-                </div>
-              <% end %>
-            </div>
+            <% if p.user_id != p.event.user_id %>
+              <div class="co-12 col-sm-6 col-md-4 mb-3">
+                <%= link_to event_path(p.event), class:"text-decoration-none" do %>
+                  <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
+                    <%= p.event.name %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       <% end %>

@@ -1,4 +1,4 @@
 <p class="card-comp" ><i class="fa-solid fa-location-dot"></i>&nbsp&nbsp&nbsp<%= @event.location %></p>
 <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= @event.date.strftime('%a %d %b %Y') %></p>
 <p class="card-comp" ><i class="fa-regular fa-clock"></i>&nbsp&nbsp&nbsp<%= @event.date.strftime('%I:%M %p') %> </p>
-<p class="card-comp" ><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= @event.capacity - (@event.plays.count ? @event.plays.count : 0) %> more spots</p>
+<p class="card-comp" ><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= @event.capacity - (@event.plays.count ? @event.plays.count : 0) + 1 %> more spots</p>

@@ -1,4 +1,5 @@
 <%= simple_form_for(event) do |f| %>
+  <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :location, as: :hidden, input_html: { value: params[:location], data: {location_autocomplete_target: "location"}, class: "d-none"},

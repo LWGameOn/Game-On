@@ -69,7 +69,7 @@ class EventsController < ApplicationController
       chatroom.save
       redirect_to events_path(@event)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

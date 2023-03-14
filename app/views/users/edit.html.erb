@@ -8,6 +8,7 @@
               <div class="card-body p-5 text-style">
                 <h2 class="text-uppercase text-center mb-5 text-style ">Edit Your Profile</h2>
                 <%= simple_form_for [@user]  do |f| %>
+                  <%= f.error_notification %>
                   <div class="form-inputs">
                     <div class="form-outline mb-4">
                     <%= f.input  :username, class:"form-control form-control-lg" %>

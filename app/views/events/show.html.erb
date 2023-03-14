@@ -23,18 +23,15 @@
           <%= simple_form_for [@event, @play] do |f| %>
             <%= f.error_notification %>
             <div class="btn-wrapper d-flex justify-content-between">
-              <p class="mt-2"><%= f.submit "JOIN", class: "btn1" %></p>
+              <p class="mt-2"><%= f.submit "JOIN", class: "btn1"%></p>
             </div>
           <% end %>
         <% end %>
         <% if @event.user_id == current_user.id %>
           <%= render "participants" %>
         <% end %>
-        <p><strong>Reviews</strong></p>
-        <% if @event.date.after?(DateTime.now) %>
-          <%= render "reviews" %>
-        <% end %>
       <% end %>
     </div>
   </div>
+  <%= render "reviews" %>
 </div>

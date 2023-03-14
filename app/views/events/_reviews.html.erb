@@ -1,21 +1,21 @@
 <div class="review mt-3">
-  <div class="row mb-3">
+  <div class="row m-3">
     <%= simple_form_for [@event, @review] do |f| %>
       <%= f.input :content, label:"Write a review"%>
       <%= f.submit class: 'btn1' %>
     <% end %>
   </div>
-
   <% if @event.date.after?(DateTime.now) %>
     <ul class="list-group list-group-light">
       <% @event.reviews.each do |review| %>
+         <hr>
         <li class="list-group-item border-0">
 
         <div class="row text-center m-1">
           <div class="col-md-6 mb-4 mb-md-0">
             <% if review.user.avatar.attached? %>
               <div class="d-flex justify-content-center mb-4">
-                <%= cl_image_tag(review.user.avatar.key, class: "avatar-bordered") %>
+                <%= cl_image_tag(review.user.avatar.key, class:"rounded-circle shadow-1-strong", width:"80", height:"80") %>
               </div>
             <% end %>
             <p class="lead my-3 text-muted justify-content-center mb-4 ">
@@ -27,8 +27,8 @@
           <div class="button mb-1 d-flex justify-content-end">
             <%if current_user.reviews.include?(review)%>
               <%= link_to review_path(review),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn1" do %>
-                  <i class="fa-solid fa-trash-can"></i>
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn-report" do %>
+                  <i class="fa-solid fa-trash-can" style="color:white;"></i>
               <% end %>
             <% end %>
           </div>
@@ -36,5 +36,4 @@
       <% end %>
     <ul>
   <% end %>
-
 </div>

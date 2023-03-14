@@ -31,9 +31,19 @@
         <% Event.where(user: @user).each do |e| %>
           <div class="co-12 col-sm-6 col-md-4 mb-3">
             <%= link_to event_path(e), class:"text-decoration-none" do %>
-              <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('event_background.jpg') %>)">
-                <%= e.name %>
-              </div>
+              <div class="card-trip">
+                  <% if e.photo.attached? %>
+                    <%= cl_image_tag e.photo.key, class: "card-img-top event-img" %>
+                  <% end %>
+                  <div class="card-trip-infos">
+                    <div>
+                      <h1 id="eventName"><%= e.name %></h1>
+                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= e.location %></p>
+                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= e.date.strftime('%a %d %b %Y') %></p>
+                    </div>
+                    <%= cl_image_tag(e.user.avatar.key, class: "card-trip-user avatar-bordered") %>
+                  </div>
+                </div>
             <% end %>
           </div>
         <% end %>

@@ -49,15 +49,15 @@
       </div>
 
       <% if @event.date.after?(DateTime.now) %>
-        <% @event.reviews.each do |review| %>
-          <ul class="list-group list-group-light">
+        <ul class="list-group list-group-light">
+          <% @event.reviews.each do |review| %>
             <li class="list-group-item border-0">
 
             <div class="row text-center m-1">
               <div class="col-md-6 mb-4 mb-md-0">
                 <% if review.user.avatar.attached? %>
                   <div class="d-flex justify-content-center mb-4">
-                    <%= cl_image_tag(review.user.avatar.key, class: "card-trip-user avatar-bordered") %>
+                    <%= cl_image_tag(review.user.avatar.key, class: "avatar-bordered") %>
                   </div>
                 <% end %>
                 <p class="lead my-3 text-muted justify-content-center mb-4 ">
@@ -75,8 +75,8 @@
                 <% end %>
               </div>
             </li>
-          <ul>
-        <% end %>
+          <% end %>
+        <ul>
       <% end %>
 
     </div>

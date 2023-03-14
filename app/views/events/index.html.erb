@@ -56,6 +56,8 @@
         <h3 class="mb-0 title">Events</h3>
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
+
+
       <div class="row">
         <% if @events.present? %>
           <% @events.each do |event| %>

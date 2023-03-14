@@ -27,16 +27,26 @@ class EventsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: { event: event })
       }
     end
-
+    if params[:filter].present?
+      if(params[:filter] == "looking")
+        @events = Event.all.select do |event|
+          event.capacity > Play.where(event: event).count
+        end
+      elsif params[:filter] == "full"
+        @events = Event.all.select do |event|
+          event.capacity <= Play.where(event: event).count
+        end
+      end
+    end
   end
 
   def show
     @event = Event.find(params[:id])
-    players = Play.where(event_id: @event.id).map do |player|
+    @players = Play.where(event_id: @event.id).map do |player|
       player.user_id
     end
     @review = Review.new
-    @has_joined = players.include?(current_user.id)
+    # @has_joined = players.include?(current_user.id)
     @play = Play.new
     @creator
   end
@@ -59,7 +69,7 @@ class EventsController < ApplicationController
       chatroom.save
       redirect_to events_path(@event)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -101,7 +111,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :date, :capacity, :sport)
+    params.require(:event).permit(:name, :description, :location, :date, :capacity, :sport, :photo)
   end
 
   def set_event

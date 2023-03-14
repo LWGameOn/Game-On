@@ -1,0 +1,19 @@
+<ul class="list-group">
+  <% @event.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+    <%if current_user.reviews.include?(review)%>
+      <%= link_to "Delete",
+      review_path(review),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    <% end %>
+  <% end %>
+</ul>
+<div>
+  <%= simple_form_for [@event, @review] do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :content, label:"Write a review"%>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to "See all events", events_path %>
+</div>

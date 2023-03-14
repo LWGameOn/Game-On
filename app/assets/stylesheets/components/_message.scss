@@ -21,7 +21,7 @@
 }
 
 .chatroom-header {
-  height: 45px;
+  height: 55px;
   background-color: #E2E2E2;
   padding: 0px 20px 10px;
   margin-bottom: 10px;
@@ -29,10 +29,12 @@
   position: fixed;
   top: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .chatroom {
-  margin-top:45px;
+  margin-top:55px;
 }
 
 .search-margin {

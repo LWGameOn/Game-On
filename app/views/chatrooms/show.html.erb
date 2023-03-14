@@ -1,5 +1,5 @@
 <div class="chatroom-header">
-  <h1 class="card-title">#<%= @chatroom.event.name %></h1>
+  <h1 class="mt-2">#<%= @chatroom.event.name %></h1>
 </div>
 <div class="container chatroom"
   data-controller="chatroom-subscription"
@@ -20,6 +20,7 @@
   <%= simple_form_for [@chatroom, @message],
   html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex", style: "position:fixed; bottom: 70px; width: 95%;" } do |f|
   %>
+    <%= f.error_notification %>
     <%= f.input :content,
       label: false,
       placeholder: "Message ##{@chatroom.event.name}",

@@ -7,6 +7,9 @@
   </div>
 </div>
 <div class="chatroom">
+  <div class="button-right px-2 py-3" style="text-align: right;">
+    <%= link_to "Create an event", new_event_path, class: "btn2" %>
+  </div>
   <div class="search mt-2 mb-4">
     <%= form_with url: chatrooms_path, method: :get, class: "d-flex search-margin" do %>
       <%= text_field_tag :event_name,
@@ -17,7 +20,6 @@
       <%= submit_tag "Search", class: "btn1" %>
     <% end %>
   </div>
-
   <div>
     <% @chatrooms.each do |chatroom| %>
       <%= link_to chatroom_path(chatroom), class:"text-decoration-none", style:"color: #0E1B14;" do %>

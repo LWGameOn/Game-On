@@ -1,0 +1,10 @@
+<div class="participants container mt-3">
+  <h3 class="card-title">Participants</h3>
+  <ul>
+    <% @event.plays.each do |play| %>
+      <% if play.user != current_user %>
+        <li><%= link_to play.user.username, user_path(play.user.id), class:"card-comp" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

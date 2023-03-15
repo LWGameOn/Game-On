@@ -1,5 +1,13 @@
 <div class="container" data-controller="map toggle-map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>">
-  <div class="icons bg-white position-sticky text-center" style="top: 0; z-index: 100">
+  <div class="icons bg-white position-sticky text-center">
+   <div class="icons m-3" style="position:relative; float:right; overflow:hidden;">
+   <%= link_to root_path do %>
+      <%= image_tag("logo",
+            width: 150, height: 150, crop: :fill) %>
+    <% end %>
+  </div>
+  </div>
+  <div class="icons bg-white position-sticky text-left" style="top: 0; z-index: 100">
       <div class="map-icon" data-action="click->toggle-map#mapToggle click->map#resize"  data-toggle-map-target="mapIcon">
         <i class="fa-solid fa-map-location-dot"></i>
       </div>

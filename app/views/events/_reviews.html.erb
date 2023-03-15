@@ -5,12 +5,11 @@
       <%= f.submit class: 'btn1' %>
     <% end %>
   </div>
-  <% if @event.date.after?(DateTime.now) %>
+
     <ul class="list-group list-group-light">
       <% @event.reviews.each do |review| %>
          <hr>
         <li class="list-group-item border-0">
-
         <div class="row text-center m-1">
           <div class="col-md-6 mb-4 mb-md-0">
             <% if review.user.avatar.attached? %>
@@ -23,7 +22,6 @@
               <p class="font-italic font-weight-normal mb-3"><%= link_to "@" + review.user.username, user_path(review.user.id), class:"card-comp" %></p>
             </div>
           </div>
-
           <div class="button mb-1 d-flex justify-content-end">
             <%if current_user.reviews.include?(review)%>
               <%= link_to review_path(review),
@@ -35,5 +33,4 @@
         </li>
       <% end %>
     <ul>
-  <% end %>
 </div>

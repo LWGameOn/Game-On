@@ -1,28 +1,17 @@
+<div class="logo mx-1 text-center">
+  <%= link_to root_path do %>
+    <%= image_tag("logo",
+          class: "mx-auto",
+          width: 150, height: 150, crop: :fill) %>
+  <% end %>
+</div>
+
 <div
   class="container"
   data-controller="map toggle-map"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
   data-map-markers-value="<%= @markers.to_json %>"
 >
-  <div
-    class="icons bg-white position-sticky text-center"
-    style="top: 0; z-index: 100"
-  >
-    <div
-      class="map-icon"
-      data-action="click->toggle-map#mapToggle click->map#resize"
-      data-toggle-map-target="mapIcon"
-    >
-      <i class="fa-solid fa-map-location-dot"></i>
-    </div>
-    <div
-      class="event-icon d-none"
-      data-action="click->toggle-map#eventToggle"
-      data-toggle-map-target="eventIcon"
-    >
-      <i class="fa-solid fa-list"></i>
-    </div>
-  </div>
   <% if @events.any? %>
     <div class="row">
       <div class="d-none" data-toggle-map-target="map">
@@ -30,14 +19,22 @@
       </div>
     </div>
   <% end %>
+  <div
+    class="event-icon d-none"
+    data-action="click->toggle-map#eventToggle"
+    data-toggle-map-target="eventIcon"
+  >
+    <div class="btn btn1">Back to list view</div>
+    <%# <i class="fa-solid fa-list"></i> %>
+  </div>
   <div data-toggle-map-target="eventPage">
     <div class="row m-2 d-flex">
-      <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex mt-3'} }) do |f| %>
+      <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex'} }) do |f| %>
         <%# <div class="row d-flex justify-content-left" > %>
         <%# <div class="col-12 mt-1"> %>
         <%= f.error_notification %>
         <%= f.input_field :name_sport_or_location,
-                      class: "form-control mt-3",
+                      class: "form-control",
                       label: false,
                       placeholder: "A name, a sport or a location" %>
         <%# </div> %>
@@ -48,7 +45,8 @@
               <%= f.input :start,
                       as: :date,
                       autofocus: true,
-                      label: "from",
+                      label: "From:",
+                      required: false,
                       html5: true,
                       class: "form-control" %>
             </div>
@@ -58,12 +56,13 @@
               <%= f.input :end,
                       as: :date,
                       autofocus: true,
-                      label: "to",
+                      label: "To:",
+                      required: false,
                       html5: true,
                       class: "form-control" %>
             </div>
           </div>
-          <div class="col-2 m-1">
+          <div class="col-2 offset-4">
             <%= submit_tag "Search", class: "btn1 " %>
           </div>
         </div>
@@ -73,6 +72,13 @@
     <div class="container py-5">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <h3 class="mb-0 title">Events</h3>
+        <div
+          class="map-icon"
+          data-action="click->toggle-map#mapToggle click->map#resize"
+          data-toggle-map-target="mapIcon"
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
       <%# <div class="filter d-flex">

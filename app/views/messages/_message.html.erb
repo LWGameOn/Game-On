@@ -4,4 +4,9 @@
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>
+  <% if message.photo.attached? %>
+    <%= link_to cl_image_path(message.photo.key), target: "_blank" do %>
+      <%= cl_image_tag message.photo.key, height: 200, width: 100, crop: :fill %>
+    <% end %>
+  <% end %>
 </div>

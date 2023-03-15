@@ -15,7 +15,9 @@
       </div>
     <% else %>
       <div class="emails mb-3">
-        <%= link_to "Report user", new_user_report_path(@user), class:"btn-report" %>
+        <%= link_to new_user_report_path(@user), class:"btn-report" do %>
+          <i class="fa-solid fa-flag"></i>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -4,6 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["sharebutton"]
 
+
   connect() {
     console.log("Controller connected")
   }
@@ -11,5 +12,6 @@ export default class extends Controller {
   sharing() {
     window.open("hello")
     this.sharebuttonTarget.innerHTML = "Hello World!"
+    console.log(this.currentTarget.dataset.message)
   }
 }

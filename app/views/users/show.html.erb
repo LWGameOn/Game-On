@@ -28,32 +28,34 @@
       <div class="button-right" style="text-align: right;">
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
-      <% if Event.where(user: @user).present? %>
-        <h2 class="card-title mt-3 pb-3">Your Posted Events</h2>
-        <% Event.where(user: @user).each do |e| %>
-          <div class="co-12 col-sm-6 col-md-4 mb-3">
-            <%= link_to event_path(e), class:"text-decoration-none" do %>
-              <div class="card-trip">
-                  <% if e.photo.attached? %>
-                    <%= cl_image_tag e.photo.key, class: "card-img-top event-img" %>
-                  <% end %>
-                  <div class="card-trip-infos">
-                    <div>
-                      <h1 id="eventName"><%= e.name %></h1>
-                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= e.location %></p>
-                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= e.date.strftime('%a %d %b %Y') %></p>
+      <div class="container py-4">
+        <% if Event.where(user: @user).present? %>
+          <h2 class="card-title mt-3 pb-3"><strong>Your Posted Events</strong></h2>
+          <% Event.where(user: @user).each do |e| %>
+            <div class="co-12 col-sm-6 col-md-4 mb-3">
+              <%= link_to event_path(e), class:"text-decoration-none" do %>
+                <div class="card-trip">
+                    <% if e.photo.attached? %>
+                      <%= cl_image_tag e.photo.key, class: "card-img-top event-img" %>
+                    <% end %>
+                    <div class="card-trip-infos">
+                      <div>
+                        <h1 id="eventName"><%= e.name %></h1>
+                        <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= e.location %></p>
+                        <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= e.date.strftime('%a %d %b %Y') %></p>
+                      </div>
+                      <%= cl_image_tag(e.user.avatar.key, class: "card-trip-user avatar-bordered") %>
                     </div>
-                    <%= cl_image_tag(e.user.avatar.key, class: "card-trip-user avatar-bordered") %>
                   </div>
-                </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <div class="container">
+    <div class="container py-4">
       <% if Play.where(user: @user).present? %>
-        <h2 class="card-title pb-3">Your Joined Events</h2>
+        <h2 class="card-title pb-3"><strong>Your Joined Events</strong></h2>
         <div class="row">
           <% Play.where(user: @user).each do |p| %>
             <% if p.user_id != p.event.user_id %>

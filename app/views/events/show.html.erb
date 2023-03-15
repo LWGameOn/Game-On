@@ -17,10 +17,10 @@
         <strong><p class="mt-2">Must be logged in to join game</p></strong>
       <% else %>
         <% if @players.include?(current_user.id) %>
-          <%= render "participants" %>
-          <br>
-          <h3>You have joined this fun game</h3>
           <%= render "joined_event_buttons" %>
+          <% if @players.size > 1 %>
+            <%= render "participants" %>
+          <% end %>
         <% else %>
           <%= simple_form_for [@event, @play] do |f| %>
             <%= f.error_notification %>

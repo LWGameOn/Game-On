@@ -1,5 +1,6 @@
 require 'faker'
 require 'open-uri'
+Chatroom.destroy_all
 Event.destroy_all
 User.destroy_all
 
@@ -52,7 +53,7 @@ event_url = [
   "https://images.pexels.com/photos/163444/sport-treadmill-tor-route-163444.jpeg?auto=compress&cs=tinysrgb&w=1600",
   "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
   "https://s1.1zoom.me/big0/855/349302-admin.jpg",
-  "https://www.teahub.io/photos/full/18-189559_tablet-compatible-best-running.jpg",
+  "https://img.freepik.com/fotos-kostenlos/sportgeraete_53876-138077.jpg?w=1800&t=st=1678878545~exp=1678879145~hmac=e4e5b11b97df4b60dcce7ff7232d458c86f7e32588e4fec42e2f58bbcaeae8d9",
   "https://c4.wallpaperflare.com/wallpaper/515/677/288/nike-running-and-sunrise-wallpaper-preview.jpg",
   "https://images.pexels.com/photos/209981/pexels-photo-209981.jpeg?auto=compress&cs=tinysrgb&w=1600",
   "https://images.pexels.com/photos/5967947/pexels-photo-5967947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -93,11 +94,11 @@ end
       user_id: user.id
    )
    event.photo.attach(io: event_image, filename: "event.jpg", content_type: "image/jpg")
-   event.save
    i += 1
 
    Chatroom.create(
-    event: Event.last
+    event: event
    )
+  event.save
   end
   puts "Finished"

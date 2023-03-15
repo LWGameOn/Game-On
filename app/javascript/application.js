@@ -2,3 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import "social-share-button"
+import "social-share-button/facebook"
+import "social-share-button/whatsapp"
+import "social-share-button/twitter"

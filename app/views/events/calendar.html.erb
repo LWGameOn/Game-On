@@ -2,7 +2,7 @@
   <div class="button-right py-3" style="text-align: right;">
     <%= link_to "Create an event", new_event_path, class: "btn2" %>
   </div>
-  <h2>Event Schedule</h2>
+  <h3 class="mb-0 title">Event Schedule</h2>
   <% if user_signed_in? %>
     <div class="container monthly_calendar mt-2" style="max-width:100%">
       <%= month_calendar(events: @events) do |date, events| %>
@@ -26,7 +26,7 @@
       <% end %>
     <%# </div> %>
     <div class="event-details" data-calendar-show-target="card">
-      
+
     </div>
   <% else %>
     <p>Must be signed in to see schedule</p>

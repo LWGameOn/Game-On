@@ -26,24 +26,36 @@
     <% end %>
   </div>
   <div>
-    <p class="btn-report mt-4">
-      <i class="fa-solid fa-trash-can" style="color:white;"></i>
-    </p>
     <%= simple_form_for [@chatroom, @message],
-        html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex", style: "position:fixed; bottom: 70px; width: 95%;" } do |f| %>
+        html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm", controller: "image-upload" }, class: "d-flex", style: "position:fixed; bottom: 60px; width: 95%;" } do |f| %>
       <%= f.error_notification %>
-      <p class="btn1 mt-4 mb-4 align-middle" style="border-radius:50%">
+      <span
+        class="btn1 mt-4 mb-4 pr-2"
+        style="border-radius:50%"
+        data-action="click->image-upload#select"
+      >
         <i class="fa-solid fa-plus"></i>
-      </p>
+      </span>
       <%= f.input :content,
               label: false,
               placeholder: "Message ##{@chatroom.event.name}",
               wrapper_html: {
                 class: "flex-grow-1"
               } %>
-      <%= f.input :photo, as: :hidden, label: false, class: "btn btn1 mb-3" %>
+      <div style="display: none">
+        <%= f.input :photo, as: :file, label: false, class: "btn btn1 mb-3" %>
+      </div>
       <%= f.submit "Send", class: "btn1 mb-3" %>
     <% end %>
   </div>
 
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button class="btn1" type="button">+</button>
+  </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile03">
+  </div>
 </div>

@@ -2,79 +2,69 @@
   <%# <ul class="list-group"> %>
   <div class="profile mb-3">
     <% if current_user.avatar.attached? %>
-      <p class="list-group-item"><%= cl_image_tag(@user.avatar.key, height: 140, width: 140, crop: :fill, class: "profile-picture") %></p>
+      <p class="list-group-item"><%= cl_image_tag(
+          @user.avatar.key,
+          height: 140,
+          width: 140,
+          crop: :fill,
+          class: "profile-picture"
+        ) %></p>
     <% end %>
     <p class="list-group-item username card-title" style="font-size:30px;"><%= "@#{@user.username}" %></p>
     <div class="bio">
-      <p class="list-group-item card-comp">Bio: <br><%= @user.bio %></p>
+      <p class="list-group-item card-comp">Bio:
+        <br><%= @user.bio %></p>
     </div>
     <% if @user == current_user %>
       <p class="list-group-item emails card-comp mb-3"><%= "Your email: #{@user.email}" %></p>
       <div class="emails mb-3">
-        <%= link_to "Edit profile", edit_user_path(@user), class:"btn1 mb-3" %>
+        <%= link_to "Edit profile", edit_user_path(@user), class: "btn1 mb-3" %>
       </div>
     <% else %>
       <div class="emails mb-3">
-        <%= link_to "Report user", new_user_report_path(@user), class:"btn-report" %>
+        <%= link_to "Report user", new_user_report_path(@user), class: "btn-report" %>
       </div>
     <% end %>
   </div>
   <div class="stats mb-5">
     <h5 class="card-title">Game stats 💪🏼</h5>
-    <p class="card-comp">Games joined: <strong><%= @user.plays.count + Event.where(user: @user).count%></strong> &nbsp; Games organized: <strong><%= Event.where(user: @user).count%></strong> </p>
+    <p class="card-comp">Games joined:
+      <strong><%= @user.plays.count + Event.where(user: @user).count %></strong>
+      &nbsp; Games organized:
+      <strong><%= Event.where(user: @user).count %></strong>
+    </p>
   </div>
   <% if current_user == @user %>
     <div class="container mt-3">
-      <div class="button-right" style="text-align: right;">
-        <%= link_to "Create an event", new_event_path, class: "btn2" %>
+      <div class="filter p-3">
+        <h5 class="card-title pb-3">Filter Events</h5>
+        <%= link_to "Upcoming",
+        user_path(@user, anchor: "filter"),
+        class: "btn1",
+        style: "margin-right:20px;" %>
+        <%= link_to "Past",
+        user_path(@user, filter: "past", anchor: "filter"),
+        class: "btn1",
+        style: "margin-right:20px;" %>
+        <%= link_to "Create an event",
+        new_event_path,
+        class: "btn2",
+        style: "position:relative; float:right;" %>
       </div>
-      <% if Event.where(user: @user).present? %>
+      <% if @events.any? %>
         <h2 class="card-title mt-3 pb-3">Your Posted Events</h2>
-        <% Event.where(user: @user).each do |e| %>
-          <div class="co-12 col-sm-6 col-md-4 mb-3">
-            <%= link_to event_path(e), class:"text-decoration-none" do %>
-              <div class="card-trip">
-                  <% if e.photo.attached? %>
-                    <%= cl_image_tag e.photo.key, class: "card-img-top event-img" %>
-                  <% end %>
-                  <div class="card-trip-infos">
-                    <div>
-                      <h1 id="eventName"><%= e.name %></h1>
-                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= e.location %></p>
-                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= e.date.strftime('%a %d %b %Y') %></p>
-                    </div>
-                    <%= cl_image_tag(e.user.avatar.key, class: "card-trip-user avatar-bordered") %>
-                  </div>
-                </div>
-            <% end %>
-          </div>
+        <% @events.each do |e| %>
+          <%= render "shared/card", event: e %>
         <% end %>
       <% end %>
     </div>
-    <div class="container">
-      <% if Play.where(user: @user).present? %>
+    <div class="container py-4">
+      <% if @plays.any? %>
         <h2 class="card-title pb-3">Your Joined Events</h2>
         <div class="row">
-          <% Play.where(user: @user).each do |p| %>
+          <% @plays.each do |p| %>
             <% if p.user_id != p.event.user_id %>
-              <div class="co-12 col-sm-6 col-md-4 mb-3">
-                <%= link_to event_path(p.event), class:"text-decoration-none" do %>
-                <div class="card-trip">
-                  <% if p.event.photo.attached? %>
-                    <%= cl_image_tag p.event.photo.key, class: "card-img-top event-img" %>
-                  <% end %>
-                  <div class="card-trip-infos">
-                    <div>
-                      <h1 id="eventName"><%= p.event.name %></h1>
-                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= p.event.location %></p>
-                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= p.event.date.strftime('%a %d %b %Y') %></p>
-                    </div>
-                    <%= cl_image_tag(p.event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
-                  </div>
-                </div>
-                <% end %>
-                </div>
-              </div>
+              <%= render "shared/card", event: p.event %>
             <% end %>
           <% end %>
         </div>

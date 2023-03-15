@@ -28,9 +28,13 @@
       <div class="button-right" style="text-align: right;">
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
-      <% if Event.where(user: @user).present? %>
+      <div class="filter">
+        <%= link_to "Upcoming", user_path(@user, anchor: 'filter'), class:'btn1', style:'margin-right:20px;' %>
+        <%= link_to "Past", user_path(@user, filter: 'past', anchor: 'filter'), class:"btn1", style:"margin-right:20px;" %>
+      </div>
+      <% if @events.any? %>
         <h2 class="card-title mt-3 pb-3">Your Posted Events</h2>
-        <% Event.where(user: @user).each do |e| %>
+        <% @events.each do |e| %>
           <div class="co-12 col-sm-6 col-md-4 mb-3">
             <%= link_to event_path(e), class:"text-decoration-none" do %>
               <div class="card-trip">
@@ -52,10 +56,10 @@
       <% end %>
     </div>
     <div class="container">
-      <% if Play.where(user: @user).present? %>
+      <% if @plays.any? %>
         <h2 class="card-title pb-3">Your Joined Events</h2>
         <div class="row">
-          <% Play.where(user: @user).each do |p| %>
+          <% @plays.each do |p| %>
             <% if p.user_id != p.event.user_id %>
               <div class="co-12 col-sm-6 col-md-4 mb-3">
                 <%= link_to event_path(p.event), class:"text-decoration-none" do %>
@@ -82,3 +86,4 @@
     </div>
   <% end %>
 </div>
+<%# <% raise %>

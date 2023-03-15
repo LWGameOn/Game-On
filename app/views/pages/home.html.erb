@@ -1,4 +1,11 @@
 <div class="contain">
+ <div class="icons m-3" style="position:relative; float:right; overflow:hidden;">
+   <%= link_to root_path do %>
+      <%= image_tag("logo",
+            width: 150, height: 150, crop: :fill) %>
+    <% end %>
+  </div>
+
   <h1>Find your team close by ...</h1>
   <div class="search mt-4 mb-4" style="width:90%; margin-left:20px;">
     <%= simple_form_for :query, :url => events_path, :method => :get do |f| %>

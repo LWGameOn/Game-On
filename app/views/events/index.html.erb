@@ -1,11 +1,27 @@
-<div class="container" data-controller="map toggle-map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>">
-  <div class="icons bg-white position-sticky text-center" style="top: 0; z-index: 100">
-      <div class="map-icon" data-action="click->toggle-map#mapToggle click->map#resize"  data-toggle-map-target="mapIcon">
-        <i class="fa-solid fa-map-location-dot"></i>
-      </div>
-      <div class="event-icon d-none" data-action="click->toggle-map#eventToggle" data-toggle-map-target="eventIcon">
+<div
+  class="container"
+  data-controller="map toggle-map"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-map-markers-value="<%= @markers.to_json %>"
+>
+  <div
+    class="icons bg-white position-sticky text-center"
+    style="top: 0; z-index: 100"
+  >
+    <div
+      class="map-icon"
+      data-action="click->toggle-map#mapToggle click->map#resize"
+      data-toggle-map-target="mapIcon"
+    >
+      <i class="fa-solid fa-map-location-dot"></i>
+    </div>
+    <div
+      class="event-icon d-none"
+      data-action="click->toggle-map#eventToggle"
+      data-toggle-map-target="eventIcon"
+    >
       <i class="fa-solid fa-list"></i>
-      </div>
+    </div>
   </div>
   <% if @events.any? %>
     <div class="row">
@@ -18,31 +34,33 @@
     <div class="row m-2 d-flex">
       <%= simple_form_for(:search, method: :get, url: events_path, defaults: { input_html: { class: 'd-inline-flex mt-3'} }) do |f| %>
         <%# <div class="row d-flex justify-content-left" > %>
-          <%# <div class="col-12 mt-1"> %>
-            <%= f.error_notification %>
-            <%= f.input_field :name_sport_or_location,
-                        class: 'form-control mt-3',
-                        label: false,
-                        placeholder: "A name, a sport or a location" %>
-          <%# </div> %>
+        <%# <div class="col-12 mt-1"> %>
+        <%= f.error_notification %>
+        <%= f.input_field :name_sport_or_location,
+                      class: "form-control mt-3",
+                      label: false,
+                      placeholder: "A name, a sport or a location" %>
+        <%# </div> %>
         <%# </div> %>
         <div class="row d-flex justify-content-left">
           <div class="col-6">
             <div class="form-group">
               <%= f.input :start,
-                          as: :date,
-                          autofocus: true,
-                          label: "from",
-                          html5: true, class: "form-control" %>
+                      as: :date,
+                      autofocus: true,
+                      label: "from",
+                      html5: true,
+                      class: "form-control" %>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
               <%= f.input :end,
-                          as: :date,
-                          autofocus: true,
-                          label: "to",
-                          html5: true, class: "form-control" %>
+                      as: :date,
+                      autofocus: true,
+                      label: "to",
+                      html5: true,
+                      class: "form-control" %>
             </div>
           </div>
           <div class="col-2 m-1">
@@ -66,26 +84,9 @@
       <div class="row">
         <% if @events.present? %>
           <% @events.each do |event| %>
-            <div class="co-12 col-sm-6 col-md-4 mb-3">
-              <%= link_to event_path(event), class:"text-decoration-none" do %>
-                <div class="card-trip">
-                  <% if event.photo.attached? %>
-                    <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
-                  <% else %>
-                    <%= image_tag "event_background.jpg", class: "card-img-top event-img" %>
-                  <% end %>
-                  <div class="card-trip-infos">
-                    <div>
-                      <h1 id="eventName"><%= event.name %></h1>
-                      <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
-                      <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
-                      <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %> places left</p>
-                    </div>
-                    <%= cl_image_tag(event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
+            <% if event.date.after?(DateTime.now) %>
+              <%= render "shared/card", event: event %>
+            <% end %>
           <% end %>
         <% else %>
           <p>no events found!</p>

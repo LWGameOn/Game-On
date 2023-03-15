@@ -1,20 +1,20 @@
-<div class="col mb-3">
+<div class="co-12 col-sm-6 col-md-4 mb-3">
   <%= link_to event_path(event), class:"text-decoration-none" do %>
-  <div class="card-trip">
-    <% if event.photo.attached? %>
-      <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
-    <% else %>
-      <%= image_tag "event_background.jpg", class: "card-img-top event-img" %>
-    <% end %>
-    <div class="card-trip-infos">
-      <div>
-        <h1 id="eventName"><%= event.name %></h1>
-        <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
-        <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
-        <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %></p>
-      </div>
+    <div class="card-trip">
+      <% if event.photo.attached? %>
+        <%= cl_image_tag event.photo.key, class: "card-img-top event-img" %>
+      <% else %>
+        <%= image_tag "event_background.jpg", class: "card-img-top event-img" %>
+      <% end %>
+      <div class="card-trip-infos">
+        <div>
+          <h1 id="eventName"><%= event.name %></h1>
+          <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
+          <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
+          <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %> places left</p>
+        </div>
         <%= cl_image_tag(event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
+      </div>
     </div>
-  </div>
-    <% end %>
+  <% end %>
 </div>

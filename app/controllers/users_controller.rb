@@ -5,10 +5,12 @@ class UsersController < ApplicationController
     @report = Report.new
     if params[:filter] == 'past'
       @events = Event.where(user: @user).select { |e| e.date.before?(DateTime.now) }
-      @plays = Play.where(user: @user).select { |p| p.event.date.before?(DateTime.now) }
+      p = Play.where(user: @user).select { |play| play.event.date.before?(DateTime.now) }
+      @plays = p.reject { |play| @events.include?(play.event) }
     else
       @events = Event.where(user: @user).select { |e| e.date.after?(DateTime.now) }
-      @plays = Play.where(user: @user).select { |p| p.event.date.after?(DateTime.now) }
+      p = Play.where(user: @user).select { |play| play.event.date.after?(DateTime.now) }
+      @plays = p.reject { |play| @events.include?(play.event) }
     end
   end
 

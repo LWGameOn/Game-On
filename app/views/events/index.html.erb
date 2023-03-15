@@ -57,12 +57,12 @@
         <h3 class="mb-0 title">Events</h3>
         <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
-      <div class="filter d-flex">
+      <%# <div class="filter d-flex">
         <h4 class="main-title">filter for: &nbsp; </h4>
-        <%= link_to "all", events_path(anchor: 'filter'), class:"btn1", style:"margin-right:20px;" %>
-        <%= link_to "Looking for Players", events_path(filter: "looking", anchor: 'filter'), class:"btn1", style:"margin-right:20px;" %>
-        <%= link_to "Reached Capacity", events_path(filter: "full", anchor: 'filter'), class:"btn1", style:"margin-right:20px;" %>
-      </div>
+        <%= link_to "all", events_path(anchor: 'filter'), class:"btn1", style:"margin-right:5px; height: 40px;" %>
+        <%# <%= link_to "spots open", events_path(filter: "looking", anchor: 'filter'), class:"btn1", style:"margin-right:5px;height: 40px;" %>
+        <%# <%= link_to "full", events_path(filter: "full", anchor: 'filter'), class:"btn1", style:"margin-right:5px;height: 40px;" %>
+      <%# </div> %>
       <div class="row">
         <% if @events.present? %>
           <% @events.each do |event| %>

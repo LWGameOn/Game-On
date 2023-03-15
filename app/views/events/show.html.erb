@@ -5,13 +5,16 @@
     <%= image_tag "event_background.jpg", style: "width:100%; height:320px;" %>
   <% end %>
   <div class="container card-info" id="anchor-join">
-    <h1 class="card-title"> <%= @event.name %></h1>
+    <h1 class="card-title">
+      <%= @event.name %></h1>
     <p class="fw-light text-font"><%= @event.sport.capitalize %></p>
-    <p class="fw-light text-font">Created by <%= link_to "@#{(@event.user == current_user ? "you" : @event.user.username)}", user_path(@event.user) %></p>
+    <p class="fw-light text-font">Created by
+      <%= link_to "@#{(@event.user == current_user ? "you" : @event.user.username)}",
+      user_path(@event.user) %></p>
   </div>
   <div class="card p-3 mx-3">
     <%= render "event_details" %>
-    <div class="pb-3 card-comp">
+    <div class="card-comp">
       <%= @event.description %>
       <% if current_user.nil? %>
         <strong><p class="mt-2">Must be logged in to join game</p></strong>
@@ -25,14 +28,14 @@
           <%= simple_form_for [@event, @play] do |f| %>
             <%= f.error_notification %>
             <div class="btn-wrapper d-flex justify-content-between">
-              <p class="mt-2"><%= f.submit "JOIN", class: "btn1"%></p>
+              <p class="mt-2"><%= f.submit "JOIN", class: "btn1" %></p>
             </div>
           <% end %>
         <% end %>
       <% end %>
     </div>
   </div>
-   <% if @players.include?(current_user.id) && @event.date.before?(DateTime.now) %>
+  <% if @players.include?(current_user.id) && @event.date.before?(DateTime.now) %>
     <%= render "reviews" %>
-   <% end %>
+  <% end %>
 </div>

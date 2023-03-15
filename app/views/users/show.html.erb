@@ -25,12 +25,11 @@
   </div>
   <% if current_user == @user %>
     <div class="container mt-3">
-      <div class="button-right" style="text-align: right;">
-        <%= link_to "Create an event", new_event_path, class: "btn2" %>
-      </div>
-      <div class="filter">
+      <div class="filter p-3">
+        <h5>Filter Events</h5>
         <%= link_to "Upcoming", user_path(@user, anchor: 'filter'), class:'btn1', style:'margin-right:20px;' %>
         <%= link_to "Past", user_path(@user, filter: 'past', anchor: 'filter'), class:"btn1", style:"margin-right:20px;" %>
+        <%= link_to "Create an event", new_event_path, class: "btn2" %>
       </div>
       <% if @events.any? %>
         <h2 class="card-title mt-3 pb-3">Your Posted Events</h2>
@@ -47,15 +46,14 @@
                       <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= e.location %></p>
                       <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= e.date.strftime('%a %d %b %Y') %></p>
                     </div>
-                    <%= cl_image_tag(e.user.avatar.key, class: "card-trip-user avatar-bordered") %>
                   </div>
-                </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <div class="container">
+    <div class="container py-4">
       <% if @plays.any? %>
         <h2 class="card-title pb-3">Your Joined Events</h2>
         <div class="row">

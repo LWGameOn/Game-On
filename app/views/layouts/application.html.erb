@@ -16,15 +16,15 @@
 
   <body>
     <div class="page-container">
-     <%= render "shared/flashes" %>
+    <%= render "shared/flashes" %>
       <div>
         <%= yield %>
       </div>
       <div class="navbar-container mb-3">
         <% if !current_page?(new_user_registration_path) %>
-           <% if !current_page?(new_user_session_path) %>
+          <% if !current_page?(new_user_session_path) %>
             <%= render "shared/navbar" %>
-           <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -1,32 +1,51 @@
 <div class="chatroom-header">
   <h1 class="mt-2">#<%= @chatroom.event.name %></h1>
 </div>
-<div class="container chatroom"
+<div
+  class="container chatroom"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
-  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+>
 
-
-  <div class="messages py-2" data-chatroom-subscription-target="messages" style="margin-bottom:80px;">
+  <div
+    class="messages py-2"
+    data-chatroom-subscription-target="messages"
+    style="margin-bottom:80px;"
+  >
     <% @chatroom.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+      <div
+        class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>"
+      >
+        <div
+          class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>"
+        >
           <%= render "messages/message", message: message %>
         </div>
       </div>
     <% end %>
   </div>
+  <div>
+    <%= simple_form_for [@chatroom, @message],
+        html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm", controller: "image-upload" }, class: "d-flex", style: "position:fixed; bottom: 60px; width: 95%; align-items: center; justify-content: space-between" } do |f| %>
+      <%= f.error_notification %>
 
-  <%= simple_form_for [@chatroom, @message],
-  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex", style: "position:fixed; bottom: 70px; width: 95%;" } do |f|
-  %>
-    <%= f.error_notification %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Message ##{@chatroom.event.name}",
-      wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn1 mb-3" %>
-  <% end %>
+      <div
+        class="upload mb-3 m-1"
+        style="border-radius:50%; background-color: #519872; color: white"
+      >
+        <i class="fa-solid fa-plus"></i>
+        <%= f.input_field :photo, as: :file %>
+      </div>
+      <%= f.input :content,
+              label: false,
+              placeholder: "Message ##{@chatroom.event.name}",
+              wrapper_html: {
+                class: "flex-grow-1"
+              } %>
+
+      <%= f.submit "Send", class: "btn1 mb-3" %>
+    <% end %>
+  </div>
 
 </div>

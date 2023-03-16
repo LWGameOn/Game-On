@@ -31,7 +31,7 @@
   <div class="stats mb-4">
     <h5 class="card-title">Game stats 💪🏼</h5>
     <p class="card-comp">Games joined:
-      <strong><%= @user.plays.count + Event.where(user: @user).count %></strong>
+      <strong><%= @user.plays.count %></strong>
       &nbsp; Games organized:
       <strong><%= Event.where(user: @user).count %></strong>
     </p>
@@ -53,8 +53,8 @@
         <div class="d-flex">
           <h2 class="card-title mt-3 pb-3" style="margin-right: 60px;">Your Posted Events</h2>
           <p><%= link_to new_event_path, class: "btn2 ml-5", style: "position:relative; float:right;" do %>
-            <i class="fa-solid fa-plus"></i>
-          <% end %></p>
+              <i class="fa-solid fa-plus"></i>
+            <% end %></p>
         </div>
         <% @events.each do |e| %>
           <%= render "shared/card", event: e %>

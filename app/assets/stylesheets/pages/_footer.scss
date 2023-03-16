@@ -3,15 +3,15 @@
   min-height: 100vh;
   grid-template-rows: 1fr auto;
   background-color: white;
- }
+}
 
- .navbar {
-    background-color: #F2F8F5;
-    height: 70px;
-    border-top: 1px solid #E2E2E2;
-    position: fixed;
-    bottom: 0;
- }
+.navbar {
+  background-color: #f2f8f5;
+  height: 70px;
+  border-top: 1px solid #e2e2e2;
+  position: fixed;
+  bottom: 0;
+}
 
 .navbar-custom {
   list-style: none;
@@ -19,6 +19,9 @@
   margin-bottom: 0px;
 }
 
+.navbar-container {
+  margin-top: 40px;
+}
 
 .navbar-custom li {
   margin-right: 65px;

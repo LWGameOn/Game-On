@@ -42,13 +42,13 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @players = Play.where(event_id: @event.id).map do |player|
-      player.user_id
+    @players = Play.where(event_id: @event.id).map do |play|
+      play.user
     end
     @review = Review.new
-    # @has_joined = players.include?(current_user.id)
     @play = Play.new
-    @creator
+    @creator = @event.user
+    # raise
   end
 
   def new
@@ -96,7 +96,7 @@ class EventsController < ApplicationController
   def calendar
     if(user_signed_in?)
       plays = Play.where(user: current_user)
-      @events = Event.where(user: current_user)
+      @events = []
       plays.each do |p|
         @events += Event.where(id: p.event_id)
       end

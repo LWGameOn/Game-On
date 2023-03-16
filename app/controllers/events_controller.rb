@@ -96,7 +96,7 @@ class EventsController < ApplicationController
   def calendar
     if(user_signed_in?)
       plays = Play.where(user: current_user)
-      @events = Event.where(user: current_user)
+      @events = []
       plays.each do |p|
         @events += Event.where(id: p.event_id)
       end

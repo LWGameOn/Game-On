@@ -6,9 +6,12 @@
   <% end %>
   <div class="d-flex" data-controller="share-button">
     <div class="container card-info">
-      <h1 class="card-title"> <%= @event.name %></h1>
+      <h1 class="card-title">
+        <%= @event.name %></h1>
       <p class="fw-light text-font"><%= @event.sport.capitalize %></p>
-      <p class="fw-light text-font">Created by <%= link_to "@#{(@event.user == current_user ? "you" : @event.user.username)}", user_path(@event.user) %></p>
+      <p class="fw-light text-font">Created by
+        <%= link_to "@#{(@event.user == current_user ? "you" : @event.user.username)}",
+        user_path(@event.user) %></p>
     </div>
   </div>
   <div class="card p-3 mx-3">
@@ -18,7 +21,7 @@
       <% if current_user.nil? %>
         <strong><p class="mt-2">Must be logged in to join game</p></strong>
       <% else %>
-        <% if @players.include?(current_user.id) %>
+        <% if @players.include?(current_user) %>
           <%= render "joined_event_buttons" %>
           <% if @players.size > 1 %>
             <%= render "participants" %>
@@ -27,7 +30,7 @@
           <%= simple_form_for [@event, @play] do |f| %>
             <%= f.error_notification %>
             <div class="btn-wrapper d-flex justify-content-between">
-              <p class="mt-4"><%= f.submit "JOIN", class: "btn1"%></p>
+              <p class="mt-4"><%= f.submit "JOIN", class: "btn1" %></p>
             </div>
           <% end %>
         <% end %>

@@ -48,7 +48,6 @@ class EventsController < ApplicationController
     @review = Review.new
     @play = Play.new
     @creator = @event.user
-    # raise
   end
 
   def new

@@ -10,7 +10,6 @@ class ReviewsController < ApplicationController
       redirect_to event_path(@event)
     else
       render "events/show", status: :unprocessable_entity
-      raise
     end
   end
 

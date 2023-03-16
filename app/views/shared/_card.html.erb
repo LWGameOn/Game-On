@@ -11,7 +11,7 @@
           <h1 id="eventName"><%= event.name %></h1>
           <p class="card-comp" ><i class="fa-solid fa-magnifying-glass-location"></i>&nbsp&nbsp&nbsp<%= event.location %></p>
           <p class="card-comp" ><i class="fa-solid fa-calendar-days"></i>&nbsp&nbsp&nbsp<%= event.date.strftime('%a %d %b %Y') %></p>
-          <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %> places left</p>
+          <p class="card-comp"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp<%= event.capacity - (event.plays.count ? event.plays.count : 0) +1 %> spots left</p>
         </div>
         <%= cl_image_tag(event.user.avatar.key, class: "card-trip-user avatar-bordered") %>
       </div>

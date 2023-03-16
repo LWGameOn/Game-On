@@ -1,7 +1,7 @@
 <div class="btn-wrapper d-flex justify-content-between mx-0">
-  <p class="mt-4"><%= link_to "Chat", chatroom_path(@event.id), class: "btn1" %></p>
-  <% if @event.user_id == current_user.id %>
-    <%= link_to event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Are You sure?' } do %>
+  <p class="mt-4"><%= link_to "Chat", chatroom_path(event.id), class: "btn1" %></p>
+  <% if event.user_id == current_user.id %>
+    <%= link_to event_path(event), data: { turbo_method: :delete, turbo_confirm: 'Are You sure?' } do %>
       <p class="btn-report mt-4">
         <i class="fa-solid fa-trash-can" style="color:white;"></i>
       </p>

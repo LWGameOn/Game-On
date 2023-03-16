@@ -22,7 +22,7 @@
         <strong><p class="mt-2">Must be logged in to join game</p></strong>
       <% else %>
         <% if @players.include?(current_user) %>
-          <%= render "joined_event_buttons" %>
+          <%= render "joined_event_buttons", event: @event %>
           <% if @players.size > 1 %>
             <%= render "participants" %>
           <% end %>

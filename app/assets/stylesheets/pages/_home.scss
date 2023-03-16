@@ -2,7 +2,7 @@
 .contain {
   background-image: asset-url("landing.jpg");
   background-size: cover;
-  height: 92vh;
+  height: 100%;
 }
 .container {
   margin: 0 auto;
@@ -16,4 +16,9 @@
 .col {
   display: flex;
   justify-content: center;
+}
+
+.search {
+  position: relative;
+  z-index: 0;
 }

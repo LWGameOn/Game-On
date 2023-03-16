@@ -28,7 +28,7 @@
       </div>
     <% end %>
   </div>
-  <div class="stats mb-5">
+  <div class="stats mb-4">
     <h5 class="card-title">Game stats 💪🏼</h5>
     <p class="card-comp">Games joined:
       <strong><%= @user.plays.count + Event.where(user: @user).count %></strong>
@@ -37,8 +37,8 @@
     </p>
   </div>
   <% if current_user == @user %>
-    <div class="container mt-3">
-      <div class="filter p-3">
+    <div class="mt-2 container">
+      <div class="filter px-1 py-4">
         <h5 class="card-title pb-3">Filter Events</h5>
         <%= link_to "Upcoming",
         user_path(@user, anchor: "filter"),
@@ -48,13 +48,14 @@
         user_path(@user, filter: "past", anchor: "filter"),
         class: "btn1",
         style: "margin-right:20px;" %>
-        <%= link_to "Create an event",
-        new_event_path,
-        class: "btn2",
-        style: "position:relative; float:right;" %>
       </div>
       <% if @events.any? %>
-        <h2 class="card-title mt-3 pb-3">Your Posted Events</h2>
+        <div class="d-flex">
+          <h2 class="card-title mt-3 pb-3" style="margin-right: 60px;">Your Posted Events</h2>
+          <p><%= link_to new_event_path, class: "btn2 ml-5", style: "position:relative; float:right;" do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %></p>
+        </div>
         <% @events.each do |e| %>
           <%= render "shared/card", event: e %>
         <% end %>

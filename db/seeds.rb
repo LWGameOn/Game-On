@@ -74,7 +74,7 @@ i = 0
   i += 1
 end
 
- i = 0
+i = 0
 
   50.times do
     puts i
@@ -92,13 +92,17 @@ end
       capacity: rand(2..20),
       sport: sport_type,
       user_id: user.id
-   )
-   event.photo.attach(io: event_image, filename: "event.jpg", content_type: "image/jpg")
-   i += 1
+  )
+  event.photo.attach(io: event_image, filename: "event.jpg", content_type: "image/jpg")
+  i += 1
 
-   Chatroom.create(
+  Chatroom.create(
     event: event
-   )
+  )
   event.save
+  Play.create(
+    user: user,
+    event: event
+  )
   end
   puts "Finished"

@@ -37,7 +37,7 @@
       <% end %>
     </div>
   </div>
-  <% if @players.include?(current_user.id) && @event.date.before?(DateTime.now) %>
+  <% if @event.date.before?(DateTime.now) %>
     <%= render "reviews" %>
   <% end %>
 </div>
